@@ -34,36 +34,29 @@ class ConfigureDevicesViewController: UIViewController {
 		adapter.dataSource = self
 
 		// Load data into ListKit view
-		iotDevices = DeviceDataApi.shared.devices//IoTDeviceDataSource.devices
+		iotDevices = DeviceDataApi.shared.devices
 		self.adapter.performUpdates(animated: true)
 
 		// And also perform a refresh
-		refreshTempData {
-			self.adapter.performUpdates(animated: true)
-		}
-
-		//setupTimer()
-	}
-
-	private func refreshTempData(completion: (() -> Void)? = nil) {
-		//IoTDeviceDataSource
 		firstly {
 			DeviceDataApi.shared.refreshDeviceData()
-		}.done { devices in
-			self.iotDevices = devices//TempDataApi.shared.devices//IoTDeviceDataSource.devices
-			if let completion = completion {
-				completion()
-			}
-		}.catch { error in
-			print(error.localizedDescription)
+			}.done { devices in
+				self.iotDevices = devices
+				self.adapter.performUpdates(animated: true)
+			}.catch { error in
+				print(error.localizedDescription)
 		}
 	}
 
 	@objc func refreshDevices(_ notification: Notification) {
 		print("Notification received. Refreshing data.")
-		refreshTempData {
-			print("Calling reload data...")
-			self.adapter.reloadData(completion: nil)
+		firstly {
+			DeviceDataApi.shared.refreshDeviceData()
+			}.done { devices in
+				self.iotDevices = devices
+				self.adapter.reloadData(completion: nil)
+			}.catch { error in
+				print(error.localizedDescription)
 		}
 	}
 
