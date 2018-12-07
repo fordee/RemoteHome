@@ -62,7 +62,7 @@
 		49C80897215EF74300796714 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49C80895215EF74300796714 /* LaunchScreen.storyboard */; };
 		49C808A2215EF74300796714 /* RemoteHomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C808A1215EF74300796714 /* RemoteHomeTests.swift */; };
 		49C808BA215EF8E900796714 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C808B9215EF8E900796714 /* GradientView.swift */; };
-		49C808C3215F352800796714 /* TempDataApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C808C2215F352800796714 /* TempDataApi.swift */; };
+		49C808C3215F352800796714 /* DeviceDataApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C808C2215F352800796714 /* DeviceDataApi.swift */; };
 		9C6B5B57A8F433131B4C2671 /* Pods_RemoteHomeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57A26C8C8890D840D0593E10 /* Pods_RemoteHomeTests.framework */; };
 		ABF4FB7BE22B0E9CD875A3A8 /* Pods_RemoteHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404E48EDCF3E5AC223286D58 /* Pods_RemoteHome.framework */; };
 /* End PBXBuildFile section */
@@ -152,7 +152,7 @@
 		49C808A1215EF74300796714 /* RemoteHomeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteHomeTests.swift; sourceTree = "<group>"; };
 		49C808A3215EF74300796714 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49C808B9215EF8E900796714 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
-		49C808C2215F352800796714 /* TempDataApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempDataApi.swift; sourceTree = "<group>"; };
+		49C808C2215F352800796714 /* DeviceDataApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDataApi.swift; sourceTree = "<group>"; };
 		4E41540CA421A33659A4C077 /* Pods-RemoteHomeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RemoteHomeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RemoteHomeTests/Pods-RemoteHomeTests.release.xcconfig"; sourceTree = "<group>"; };
 		57A26C8C8890D840D0593E10 /* Pods_RemoteHomeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RemoteHomeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B58CF30467024604CA00B23 /* Pods-RemoteHome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RemoteHome.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RemoteHome/Pods-RemoteHome.debug.xcconfig"; sourceTree = "<group>"; };
@@ -299,7 +299,7 @@
 		499BC04221712AA900C5A98B /* Api */ = {
 			isa = PBXGroup;
 			children = (
-				49C808C2215F352800796714 /* TempDataApi.swift */,
+				49C808C2215F352800796714 /* DeviceDataApi.swift */,
 				4983435F21AC515C00B95A47 /* RestClient.swift */,
 				4983436121AC612800B95A47 /* DeviceService.swift */,
 			);
@@ -549,7 +549,7 @@
 				49C8088D215EF74200796714 /* AppDelegate.swift in Sources */,
 				499BC0492171305600C5A98B /* SetTemperatureView.swift in Sources */,
 				49B139052183E8A600330E3D /* FanCell.swift in Sources */,
-				49C808C3215F352800796714 /* TempDataApi.swift in Sources */,
+				49C808C3215F352800796714 /* DeviceDataApi.swift in Sources */,
 				49B4020D2177AA930093607C /* IoTDevice.swift in Sources */,
 				4910E832218E1A2000E538B4 /* MenuViewCell.swift in Sources */,
 				4910E84C2194E17900E538B4 /* Room.swift in Sources */,
@@ -750,7 +750,10 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = RemoteHome/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.4DWare.RemoteHome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -770,7 +773,10 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = RemoteHome/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.4DWare.RemoteHome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -787,7 +793,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 322WP4362D;
 				INFOPLIST_FILE = RemoteHomeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.4DWare.RemoteHomeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -805,7 +815,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 322WP4362D;
 				INFOPLIST_FILE = RemoteHomeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.4DWare.RemoteHomeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

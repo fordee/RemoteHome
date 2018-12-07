@@ -17,10 +17,11 @@ class MenuViewController: UIViewController {
 
 	var user: AWSCognitoIdentityUser?
 	var userAttributes: [AWSCognitoIdentityProviderAttributeType]?
-
 	var mfaSettings: [AWSCognitoIdentityProviderMFAOptionType]?
 
 	var tokenString: String?
+
+
 
 	//let tempDataApi = TempDataApi.shared
 	var menuItems: [MenuItem] = [MenuItem(menuName: "Dashboard", iconName: "HeatIcon"),		// 0
@@ -89,13 +90,12 @@ class MenuViewController: UIViewController {
 				let getSessionResult = getSessionTask.result
 				//let idToken = getSessionResult?.idToken?.tokenString
 				self.tokenString = getSessionResult?.idToken?.tokenString
-				TempDataApi.shared.tokenString = self.tokenString
+				DeviceDataApi.shared.tokenString = self.tokenString
 				//IoTDeviceDataSource.token = self.tokenString
 				print("tokenString: \(String(describing: self.tokenString))")
 
-				// Refresh IoT Data
-				//IoTDeviceDataSource.refreshTempData()
-				TempDataApi.shared.refreshTempData()
+				// Refresh IoT Data and discard the result. This is so that the devices array has data
+				_ = DeviceDataApi.shared.refreshDeviceData()
 			})
 			return nil
 		})

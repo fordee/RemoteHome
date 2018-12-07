@@ -71,7 +71,7 @@ class SetTemperatureView: UIView {
 	@objc func sliderFinishedEditing(_ slider: UISlider) {
 		print("slider editing did end.")
 		guard let device = device else {return}
-		TempDataApi.shared.command(to: device)
+		DeviceDataApi.shared.command(to: device)
 	}
 
 }

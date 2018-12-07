@@ -14,7 +14,7 @@ public class DeviceService: RestClient {
 		super.init(token: token)
 	}
 
-	public func temperature() -> Promise<TempDataResponse> {
+	public func temperature() -> Promise<DeviceDataResponse> {
 		return request(.temperature)
 	}
 

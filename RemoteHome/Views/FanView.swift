@@ -86,7 +86,7 @@ class FanView: UIView {
 		
 		guard let device = device, let hvacFanMode = HvacFanMode(rawValue: buttonIndex) else {return}
 		device.hvacCommand.fanMode = hvacFanMode
-		TempDataApi.shared.command(to: device)
+		DeviceDataApi.shared.command(to: device)
 	}
 
 	private func setImage(on button: UIButton, imageName: String) {

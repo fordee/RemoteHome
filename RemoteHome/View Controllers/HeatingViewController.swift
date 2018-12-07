@@ -13,7 +13,7 @@ import PromiseKit
 class HeatingViewController: UIViewController {
 
 	//let tempDataApi = TempDataApi.shared
-	var tempData: [TempItem] = []
+	var tempData: [DeviceData] = []
 	var temps: [Double] = []
 	var humids: [Double] = []
 	//var timer: Timer?
@@ -40,39 +40,30 @@ class HeatingViewController: UIViewController {
 		adapter.dataSource = self
 
 		// Load data into ListKit view
-		iotDevices = TempDataApi.shared.devices
+		iotDevices = DeviceDataApi.shared.devices
 
 		firstly {
-			refreshTempData()
-			}.done { returnSting in
-				print(returnSting)
-				self.iotDevices = TempDataApi.shared.devices
+			DeviceDataApi.shared.refreshDeviceData()
+			}.done { devices in
+				self.iotDevices = devices//TempDataApi.shared.devices
 				self.adapter.performUpdates(animated: true)
 			}.catch { error in
 				print("Error: \(error)")
 		}
 	}
 
-	private func refreshTempData() -> Promise<String> {
-		return Promise { seal in
-			TempDataApi.shared.refreshTempData()
-			seal.fulfill("Done")
-		}
-	}
-
 	@objc func refreshDevices(_ notification: Notification) {
 		print("Notification received. Refreshing data.")
 		firstly {
-			refreshTempData()
-			}.done { returnSting in
-				print("Calling reload data...")
-				self.iotDevices = TempDataApi.shared.devices
+			//refreshTempData()
+			DeviceDataApi.shared.refreshDeviceData()
+			}.done { devices in
+				self.iotDevices = devices//TempDataApi.shared.devices
 				self.adapter.reloadData(completion: nil)
 			}.catch { error in
 
 		}
 	}
-
 }
 
 // MARK: List Adapter Data Source

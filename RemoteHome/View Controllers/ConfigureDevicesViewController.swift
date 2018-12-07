@@ -8,6 +8,7 @@
 
 import UIKit
 import IGListKit
+import PromiseKit
 
 class ConfigureDevicesViewController: UIViewController {
 
@@ -33,7 +34,7 @@ class ConfigureDevicesViewController: UIViewController {
 		adapter.dataSource = self
 
 		// Load data into ListKit view
-		iotDevices = TempDataApi.shared.devices//IoTDeviceDataSource.devices
+		iotDevices = DeviceDataApi.shared.devices//IoTDeviceDataSource.devices
 		self.adapter.performUpdates(animated: true)
 
 		// And also perform a refresh
@@ -46,11 +47,15 @@ class ConfigureDevicesViewController: UIViewController {
 
 	private func refreshTempData(completion: (() -> Void)? = nil) {
 		//IoTDeviceDataSource
-			TempDataApi.shared.refreshTempData {
-			self.iotDevices = TempDataApi.shared.devices//IoTDeviceDataSource.devices
+		firstly {
+			DeviceDataApi.shared.refreshDeviceData()
+		}.done { devices in
+			self.iotDevices = devices//TempDataApi.shared.devices//IoTDeviceDataSource.devices
 			if let completion = completion {
 				completion()
 			}
+		}.catch { error in
+			print(error.localizedDescription)
 		}
 	}
 

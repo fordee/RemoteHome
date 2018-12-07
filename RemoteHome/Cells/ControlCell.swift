@@ -92,7 +92,7 @@ class ControlCell: UICollectionViewCell {
 		setImage(on: onControl, imageName: device.hvacCommand.on ? "OnButton" : "OnButtonUnhighlighted")
 		print("device.on: \(device.hvacCommand.on)")
 		delegate?.refreshListController()
-		TempDataApi.shared.command(to: device)
+		DeviceDataApi.shared.command(to: device)
 		// Provide some haptic feedback
 		AudioServicesPlaySystemSound(1519) // Actuate `Peek` feedback (weak boom)
 		//AudioServicesPlaySystemSound(1520)
@@ -103,7 +103,7 @@ class ControlCell: UICollectionViewCell {
 		unhighlightAllModeButtons()
 		setImage(on: autoControl, imageName: "AutoButton")
 		device.hvacCommand.mode = .hvacAuto
-		TempDataApi.shared.command(to: device)
+		DeviceDataApi.shared.command(to: device)
 	}
 
 	@objc func setHeatButton(_ sender: Any) {
@@ -111,7 +111,7 @@ class ControlCell: UICollectionViewCell {
 		unhighlightAllModeButtons()
 		setImage(on: heatControl, imageName: "HeatButton")
 		device.hvacCommand.mode = .hvacHot
-		TempDataApi.shared.command(to: device)
+		DeviceDataApi.shared.command(to: device)
 	}
 
 	@objc func setDryButton(_ sender: Any) {
@@ -119,14 +119,14 @@ class ControlCell: UICollectionViewCell {
 		unhighlightAllModeButtons()
 		setImage(on: dryControl, imageName: "DryButton")
 		device.hvacCommand.mode = .hvacDry
-		TempDataApi.shared.command(to: device)
+		DeviceDataApi.shared.command(to: device)
 	}
 	@objc func setFanButton(_ sender: Any) {
 		guard let device = device else {return}
 		unhighlightAllModeButtons()
 		setImage(on: fanControl, imageName: "FanButton")
 		device.hvacCommand.mode = .hvacFan
-		TempDataApi.shared.command(to: device)
+		DeviceDataApi.shared.command(to: device)
 	}
 
 	@objc func setCoolButton(_ sender: Any) {
@@ -134,7 +134,7 @@ class ControlCell: UICollectionViewCell {
 		unhighlightAllModeButtons()
 		setImage(on: coolControl, imageName: "CoolButton")
 		device.hvacCommand.mode = .hvacCold
-		TempDataApi.shared.command(to: device)
+		DeviceDataApi.shared.command(to: device)
 	}
 
 	func unhighlightAllModeButtons() {

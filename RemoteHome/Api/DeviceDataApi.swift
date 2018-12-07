@@ -45,7 +45,7 @@ enum HvacWideVanneMode: Int, Decodable {
 	case wideRightEnd
 }  // HVAC  WIDE VANNE MODE
 
-public struct TempItem: Decodable {
+public struct DeviceData: Decodable {
 	let date_time: String
 	let humidity: String
 	let deviceid: String
@@ -67,13 +67,13 @@ public struct TempItem: Decodable {
 
 public struct Device: Decodable {
 	let deviceid: String
-	let data: TempItem//[TempItem]
+	let data: DeviceData
 }
 
-public struct TempDataResponse: Decodable {
+public struct DeviceDataResponse: Decodable {
 	//let ServiceID: String
 	var devices: [Device]
-		init() {
+	init() {
 		devices = []
 	}
 }
@@ -95,7 +95,6 @@ public struct HvacCommand {
 	}
 
 	init() {
-		
 	}
 }
 
@@ -103,22 +102,23 @@ public struct HvacCommandResponse: Codable {
 	var result: String
 }
 
-final public class TempDataApi: NSObject {
-
+final public class DeviceDataApi {
 	// This is a Singleton
-	static let shared = TempDataApi()
+	static let shared = DeviceDataApi()
 
+	// MARK: Public variables
 	public var tokenString: String? {
 		didSet {
 			service = DeviceService(token: tokenString)
 		}
 	}
-
 	public var devices: [IoTDevice] = []
-	public var tempDataResponse: TempDataResponse?
 
+	// MARK: Private variables
 	private var service: DeviceService?
 
+	// MARK: Public functions
+	// Send Command to aircon service
 	public func command(to device: IoTDevice) {
 		let parameters: [String: String] = [
 			"command" : String(device.hvacCommand.on),
@@ -140,30 +140,27 @@ final public class TempDataApi: NSObject {
 		}
 	}
 
+	// Get the device data
+	public func refreshDeviceData() -> Promise<[IoTDevice]> {
+		return Promise {seal in
+			guard let service = service else { fatalError("DeviceService is unavailable") }
 
-	public func refreshTempData(completion: (() -> Void)? = nil) {
-		guard let service = service else { fatalError("DeviceService is unavailable") }
-
-		firstly {
-			service.temperature()
-			}.done { json in
-				self.tempDataResponse = json
-				//print(tempDataResponse ?? "")
-			}.catch { error in
-				print("Error: \(error.localizedDescription)")
-		}
-
-		guard let tempDataResponse = tempDataResponse else { return }
-		devices = getDeviceList(tempDataResponse: tempDataResponse)
-
-		if let completion = completion {
-			completion()
+			firstly {
+				service.temperature()
+				}.done { deviceDataResponse in
+					self.devices = self.getDeviceList(deviceDataResponse: deviceDataResponse)
+					seal.fulfill(self.devices)
+				}.catch { error in
+					print("Error: \(error.localizedDescription)")
+					seal.reject(error)
+			}
 		}
 	}
 
-	private func getDeviceList(tempDataResponse: TempDataResponse) -> [IoTDevice] {
+	// MARK: Private functions
+	private func getDeviceList(deviceDataResponse: DeviceDataResponse) -> [IoTDevice] {
 		var iotDevces: [IoTDevice] = []
-		for device in tempDataResponse.devices {
+		for device in deviceDataResponse.devices {
 			let iotDevice = IoTDevice(deviceName: device.deviceid)
 			setDeviceAttributes(for: iotDevice, by: device.data)
 			iotDevces.append(iotDevice)
@@ -171,7 +168,7 @@ final public class TempDataApi: NSObject {
 		return iotDevces
 	}
 
-	private func setDeviceAttributes(for device: IoTDevice, by: TempItem) {
+	private func setDeviceAttributes(for device: IoTDevice, by: DeviceData) {
 		device.temperature = by.temperature
 		device.humidity = by.humidity
 		device.dateTime = by.date_time
@@ -181,7 +178,6 @@ final public class TempDataApi: NSObject {
 		device.hvacCommand.fanMode = by.fan_mode
 		device.hvacCommand.vanneMode = by.vanne_mode
 	}
-
 
 }
 

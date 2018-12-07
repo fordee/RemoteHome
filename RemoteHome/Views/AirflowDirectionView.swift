@@ -60,7 +60,7 @@ class AirflowDirectionView: UIView {
 
 		guard let device = device, let hvacVanneMode = HvacVanneMode(rawValue: airflowButtonCounter) else {return}
 		device.hvacCommand.vanneMode = hvacVanneMode
-		TempDataApi.shared.command(to: device)
+		DeviceDataApi.shared.command(to: device)
 	}
 
 	@objc func autoButtonPressed(_ sender: Any) {
@@ -70,7 +70,7 @@ class AirflowDirectionView: UIView {
 
 		guard let device = device else {return}
 		device.hvacCommand.vanneMode = .vanneAuto
-		TempDataApi.shared.command(to: device)
+		DeviceDataApi.shared.command(to: device)
 	}
 
 	@objc func swingButtonPressed(_ sender: Any) {
@@ -80,7 +80,7 @@ class AirflowDirectionView: UIView {
 
 		guard let device = device else {return}
 		device.hvacCommand.vanneMode = .vanneAutoMove
-		TempDataApi.shared.command(to: device)
+		DeviceDataApi.shared.command(to: device)
 	}
 
 //	func setAutoButton(on: Bool) {

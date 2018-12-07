@@ -71,7 +71,7 @@ class FanCell: UICollectionViewCell {
 		setControlImages(on: true)
 		guard let device = device else {return}
 		device.hvacCommand.fanMode = .fanSpeedAuto
-		TempDataApi.shared.command(to: device)
+		DeviceDataApi.shared.command(to: device)
 	}
 }
 
