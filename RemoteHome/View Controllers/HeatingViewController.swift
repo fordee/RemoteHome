@@ -16,7 +16,6 @@ class HeatingViewController: UIViewController {
 	var tempData: [DeviceData] = []
 	var temps: [Double] = []
 	var humids: [Double] = []
-	//var timer: Timer?
 
 	var iotDevices: [IoTDevice] = []
 	let v = ControlsView()
@@ -32,20 +31,18 @@ class HeatingViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		navigationItem.title = "Heating"
-
 		NotificationCenter.default.addObserver(self, selector: #selector(refreshDevices), name: .refreshDevices, object: nil)
-		
 		// Setup IGListView Adapter
 		adapter.collectionView = v.listView
 		adapter.dataSource = self
-
 		// Load data into ListKit view
 		iotDevices = DeviceDataApi.shared.devices
-
+		self.adapter.performUpdates(animated: true)
+		// And refresh data. It may be old.
 		firstly {
 			DeviceDataApi.shared.refreshDeviceData()
 			}.done { devices in
-				self.iotDevices = devices//TempDataApi.shared.devices
+				self.iotDevices = devices
 				self.adapter.performUpdates(animated: true)
 			}.catch { error in
 				print("Error: \(error)")
@@ -55,10 +52,9 @@ class HeatingViewController: UIViewController {
 	@objc func refreshDevices(_ notification: Notification) {
 		print("Notification received. Refreshing data.")
 		firstly {
-			//refreshTempData()
 			DeviceDataApi.shared.refreshDeviceData()
 			}.done { devices in
-				self.iotDevices = devices//TempDataApi.shared.devices
+				self.iotDevices = devices
 				self.adapter.reloadData(completion: nil)
 			}.catch { error in
 

@@ -63,6 +63,7 @@
 		49C808A2215EF74300796714 /* RemoteHomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C808A1215EF74300796714 /* RemoteHomeTests.swift */; };
 		49C808BA215EF8E900796714 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C808B9215EF8E900796714 /* GradientView.swift */; };
 		49C808C3215F352800796714 /* DeviceDataApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C808C2215F352800796714 /* DeviceDataApi.swift */; };
+		49EF5F0221BAF7A60021BAE3 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F0121BAF7A60021BAE3 /* String+Utils.swift */; };
 		9C6B5B57A8F433131B4C2671 /* Pods_RemoteHomeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57A26C8C8890D840D0593E10 /* Pods_RemoteHomeTests.framework */; };
 		ABF4FB7BE22B0E9CD875A3A8 /* Pods_RemoteHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404E48EDCF3E5AC223286D58 /* Pods_RemoteHome.framework */; };
 /* End PBXBuildFile section */
@@ -153,6 +154,7 @@
 		49C808A3215EF74300796714 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49C808B9215EF8E900796714 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		49C808C2215F352800796714 /* DeviceDataApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDataApi.swift; sourceTree = "<group>"; };
+		49EF5F0121BAF7A60021BAE3 /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
 		4E41540CA421A33659A4C077 /* Pods-RemoteHomeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RemoteHomeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RemoteHomeTests/Pods-RemoteHomeTests.release.xcconfig"; sourceTree = "<group>"; };
 		57A26C8C8890D840D0593E10 /* Pods_RemoteHomeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RemoteHomeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B58CF30467024604CA00B23 /* Pods-RemoteHome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RemoteHome.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RemoteHome/Pods-RemoteHome.debug.xcconfig"; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				49026A6F21711D0D0088501A /* Themes.swift */,
+				49EF5F0121BAF7A60021BAE3 /* String+Utils.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -580,6 +583,7 @@
 				495CE98B2178ECF100851172 /* HeaderCell.swift in Sources */,
 				4941657921A890030034328C /* LoginViewController.swift in Sources */,
 				49B13901218392C600330E3D /* ControlCell+IoTDevice.swift in Sources */,
+				49EF5F0221BAF7A60021BAE3 /* String+Utils.swift in Sources */,
 				4983436621B8374A00B95A47 /* ApiConfig.swift in Sources */,
 				4941657721A88E020034328C /* LoginView.swift in Sources */,
 				4910E834218E1C0F00E538B4 /* MenuItem.swift in Sources */,

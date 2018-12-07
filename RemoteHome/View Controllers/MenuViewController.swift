@@ -94,8 +94,19 @@ class MenuViewController: UIViewController {
 				//IoTDeviceDataSource.token = self.tokenString
 				print("tokenString: \(String(describing: self.tokenString))")
 
-				// Refresh IoT Data and discard the result. This is so that the devices array has data
-				_ = DeviceDataApi.shared.refreshDeviceData()
+				// Refresh IoT Data. This is so that the devices array has data
+				firstly {
+					DeviceDataApi.shared.refreshDeviceData()
+					}.catch { error in
+						print("We have an error folks: \(error)")
+						if let response = error as? PMKHTTPError,
+							let fr = response.failureReason,
+							let jsonReason = fr.convertToDictionary(),
+							let reason = jsonReason["message"] {
+							print(reason)
+						}
+
+				}
 			})
 			return nil
 		})
