@@ -142,7 +142,6 @@ final public class TempDataApi: NSObject {
 
 
 	public func refreshTempData(completion: (() -> Void)? = nil) {
-
 		guard let service = service else { fatalError("DeviceService is unavailable") }
 
 		firstly {
@@ -155,23 +154,21 @@ final public class TempDataApi: NSObject {
 		}
 
 		guard let tempDataResponse = tempDataResponse else { return }
+		devices = getDeviceList(tempDataResponse: tempDataResponse)
 
-		for device in tempDataResponse.devices {
-			// check if IoT device already in array
-			let index = self.devices.firstIndex { $0.deviceName == device.deviceid }
-
-			if index != nil {
-				self.setDeviceAttributes(for: self.devices[index!], by: device.data)
-			} else {
-				let iotDevice = IoTDevice(deviceName: device.deviceid)
-				print("Device: \(device.deviceid)")
-				self.setDeviceAttributes(for: iotDevice, by: device.data)
-				self.devices.append(iotDevice)
-			}
-		}
 		if let completion = completion {
 			completion()
 		}
+	}
+
+	private func getDeviceList(tempDataResponse: TempDataResponse) -> [IoTDevice] {
+		var iotDevces: [IoTDevice] = []
+		for device in tempDataResponse.devices {
+			let iotDevice = IoTDevice(deviceName: device.deviceid)
+			setDeviceAttributes(for: iotDevice, by: device.data)
+			iotDevces.append(iotDevice)
+		}
+		return iotDevces
 	}
 
 	private func setDeviceAttributes(for device: IoTDevice, by: TempItem) {
