@@ -64,6 +64,14 @@
 		49C808BA215EF8E900796714 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C808B9215EF8E900796714 /* GradientView.swift */; };
 		49C808C3215F352800796714 /* DeviceDataApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C808C2215F352800796714 /* DeviceDataApi.swift */; };
 		49EF5F0221BAF7A60021BAE3 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F0121BAF7A60021BAE3 /* String+Utils.swift */; };
+		49EF5F0421BC40B50021BAE3 /* Error+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F0321BC40B50021BAE3 /* Error+Utils.swift */; };
+		49EF5F0621BC48490021BAE3 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F0521BC48490021BAE3 /* ErrorViewController.swift */; };
+		49EF5F0821BC48CA0021BAE3 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F0721BC48CA0021BAE3 /* ErrorView.swift */; };
+		49EF5F0A21BC4B050021BAE3 /* ErrorView+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F0921BC4B050021BAE3 /* ErrorView+String.swift */; };
+		49EF5F0C21BC59280021BAE3 /* PopUpErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F0B21BC59280021BAE3 /* PopUpErrorView.swift */; };
+		49EF5F0F21BC5C2A0021BAE3 /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F0E21BC5C2A0021BAE3 /* DimmingPresentationController.swift */; };
+		49EF5F1121BC5C630021BAE3 /* SlideInAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F1021BC5C630021BAE3 /* SlideInAnimationController.swift */; };
+		49EF5F1321BC5CBD0021BAE3 /* SlideOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F1221BC5CBD0021BAE3 /* SlideOutAnimationController.swift */; };
 		9C6B5B57A8F433131B4C2671 /* Pods_RemoteHomeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57A26C8C8890D840D0593E10 /* Pods_RemoteHomeTests.framework */; };
 		ABF4FB7BE22B0E9CD875A3A8 /* Pods_RemoteHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404E48EDCF3E5AC223286D58 /* Pods_RemoteHome.framework */; };
 /* End PBXBuildFile section */
@@ -155,6 +163,14 @@
 		49C808B9215EF8E900796714 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		49C808C2215F352800796714 /* DeviceDataApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDataApi.swift; sourceTree = "<group>"; };
 		49EF5F0121BAF7A60021BAE3 /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
+		49EF5F0321BC40B50021BAE3 /* Error+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Utils.swift"; sourceTree = "<group>"; };
+		49EF5F0521BC48490021BAE3 /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
+		49EF5F0721BC48CA0021BAE3 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		49EF5F0921BC4B050021BAE3 /* ErrorView+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ErrorView+String.swift"; sourceTree = "<group>"; };
+		49EF5F0B21BC59280021BAE3 /* PopUpErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpErrorView.swift; sourceTree = "<group>"; };
+		49EF5F0E21BC5C2A0021BAE3 /* DimmingPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
+		49EF5F1021BC5C630021BAE3 /* SlideInAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInAnimationController.swift; sourceTree = "<group>"; };
+		49EF5F1221BC5CBD0021BAE3 /* SlideOutAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOutAnimationController.swift; sourceTree = "<group>"; };
 		4E41540CA421A33659A4C077 /* Pods-RemoteHomeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RemoteHomeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RemoteHomeTests/Pods-RemoteHomeTests.release.xcconfig"; sourceTree = "<group>"; };
 		57A26C8C8890D840D0593E10 /* Pods_RemoteHomeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RemoteHomeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B58CF30467024604CA00B23 /* Pods-RemoteHome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RemoteHome.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RemoteHome/Pods-RemoteHome.debug.xcconfig"; sourceTree = "<group>"; };
@@ -257,6 +273,9 @@
 				4941657221A872DC0034328C /* SignUpView.swift */,
 				4941657621A88E020034328C /* LoginView.swift */,
 				4941658521A8E12B0034328C /* VerifyView.swift */,
+				49EF5F0B21BC59280021BAE3 /* PopUpErrorView.swift */,
+				49EF5F0721BC48CA0021BAE3 /* ErrorView.swift */,
+				49EF5F0921BC4B050021BAE3 /* ErrorView+String.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -272,6 +291,7 @@
 				4941657021A8729D0034328C /* SignUpViewController.swift */,
 				4941657821A890030034328C /* LoginViewController.swift */,
 				4941658321A8E0EC0034328C /* VerifyViewController.swift */,
+				49EF5F0521BC48490021BAE3 /* ErrorViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -313,6 +333,7 @@
 			children = (
 				49026A6F21711D0D0088501A /* Themes.swift */,
 				49EF5F0121BAF7A60021BAE3 /* String+Utils.swift */,
+				49EF5F0321BC40B50021BAE3 /* Error+Utils.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -344,10 +365,11 @@
 				4941657E21A894430034328C /* Config */,
 				499BC04221712AA900C5A98B /* Api */,
 				499BC04121712AA000C5A98B /* Model */,
-				499BC04021712A7A00C5A98B /* Section Controllers */,
 				499BC03F21712A5A00C5A98B /* View Controllers */,
+				499BC04021712A7A00C5A98B /* Section Controllers */,
 				499BC03E21712A4A00C5A98B /* Views */,
 				499BC03D21712A4200C5A98B /* Cells */,
+				49EF5F0D21BC5C0A0021BAE3 /* Presentation Controllers */,
 				499BC04321712AC000C5A98B /* Utility */,
 				49C80895215EF74300796714 /* LaunchScreen.storyboard */,
 				49C8088C215EF74200796714 /* AppDelegate.swift */,
@@ -364,6 +386,16 @@
 				49C808A3215EF74300796714 /* Info.plist */,
 			);
 			path = RemoteHomeTests;
+			sourceTree = "<group>";
+		};
+		49EF5F0D21BC5C0A0021BAE3 /* Presentation Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				49EF5F0E21BC5C2A0021BAE3 /* DimmingPresentationController.swift */,
+				49EF5F1021BC5C630021BAE3 /* SlideInAnimationController.swift */,
+				49EF5F1221BC5CBD0021BAE3 /* SlideOutAnimationController.swift */,
+			);
+			path = "Presentation Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -546,12 +578,15 @@
 				4910E8402193521F00E538B4 /* MenuView.swift in Sources */,
 				4910E8482194A2FB00E538B4 /* SettingsMenuViewController.swift in Sources */,
 				49C8088F215EF74200796714 /* DashboardViewController.swift in Sources */,
+				49EF5F1321BC5CBD0021BAE3 /* SlideOutAnimationController.swift in Sources */,
 				495CE98F2178EE4900851172 /* HeaderView+IoTDevice.swift in Sources */,
+				49EF5F0A21BC4B050021BAE3 /* ErrorView+String.swift in Sources */,
 				495CE98D2178ED5500851172 /* HeaderView.swift in Sources */,
 				499BC04521712D0700C5A98B /* TemperatureCell.swift in Sources */,
 				49C8088D215EF74200796714 /* AppDelegate.swift in Sources */,
 				499BC0492171305600C5A98B /* SetTemperatureView.swift in Sources */,
 				49B139052183E8A600330E3D /* FanCell.swift in Sources */,
+				49EF5F0821BC48CA0021BAE3 /* ErrorView.swift in Sources */,
 				49C808C3215F352800796714 /* DeviceDataApi.swift in Sources */,
 				49B4020D2177AA930093607C /* IoTDevice.swift in Sources */,
 				4910E832218E1A2000E538B4 /* MenuViewCell.swift in Sources */,
@@ -564,6 +599,7 @@
 				4910E83C21920D1F00E538B4 /* MenuSectionController.swift in Sources */,
 				49026A6C216FC1390088501A /* ControlCell.swift in Sources */,
 				4983436021AC515C00B95A47 /* RestClient.swift in Sources */,
+				49EF5F0421BC40B50021BAE3 /* Error+Utils.swift in Sources */,
 				4910E8422193570500E538B4 /* MenuItemView.swift in Sources */,
 				49C7D74B2188BD2000E47328 /* AirflowView.swift in Sources */,
 				49AB4C382185015600A7B38A /* AirflowDirectionView.swift in Sources */,
@@ -577,12 +613,16 @@
 				49026A6A216FC0880088501A /* ControlsSectionController.swift in Sources */,
 				4910E84E2194E23A00E538B4 /* ConfigDeviceSectionController.swift in Sources */,
 				4941658621A8E12B0034328C /* VerifyView.swift in Sources */,
+				49EF5F1121BC5C630021BAE3 /* SlideInAnimationController.swift in Sources */,
 				49B139032183A0BE00330E3D /* SetTemperatureView+IoTDevice.swift in Sources */,
 				498F01A121861BB200AC308E /* AirflowDirectionView+IoTDevice.swift in Sources */,
 				49AB4C362184FEF000A7B38A /* AirflowCell.swift in Sources */,
 				495CE98B2178ECF100851172 /* HeaderCell.swift in Sources */,
+				49EF5F0C21BC59280021BAE3 /* PopUpErrorView.swift in Sources */,
 				4941657921A890030034328C /* LoginViewController.swift in Sources */,
+				49EF5F0F21BC5C2A0021BAE3 /* DimmingPresentationController.swift in Sources */,
 				49B13901218392C600330E3D /* ControlCell+IoTDevice.swift in Sources */,
+				49EF5F0621BC48490021BAE3 /* ErrorViewController.swift in Sources */,
 				49EF5F0221BAF7A60021BAE3 /* String+Utils.swift in Sources */,
 				4983436621B8374A00B95A47 /* ApiConfig.swift in Sources */,
 				4941657721A88E020034328C /* LoginView.swift in Sources */,

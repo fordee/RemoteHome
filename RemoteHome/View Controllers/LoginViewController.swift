@@ -35,13 +35,13 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: LoginViewControllerDelegate {
 	func handleSignUp() {
-		self.present(SignUpViewController(), animated: true, completion:  nil)
+		present(SignUpViewController(), animated: true, completion:  nil)
 	}
 
 	func handleLogin(loginInfo: LoginInfo) {
 		print(loginInfo)
 		let authDetails = AWSCognitoIdentityPasswordAuthenticationDetails(username: loginInfo.email, password: loginInfo.password )
-		self.passwordAuthenticationCompletion?.set(result: authDetails)
+		passwordAuthenticationCompletion?.set(result: authDetails)
 	}
 
 	func handleForgotPassword(email: String) {

@@ -10,9 +10,9 @@ import Foundation
 
 extension MenuItemView {
 
-	func render(with: MenuItem) {
-		menuItemLabel.text = with.menuName
-		menuIcon.image = with.icon.image
+	func render(with menuItem: MenuItem) {
+		menuItemLabel.text = menuItem.menuName
+		menuIcon.image = menuItem.icon.image
 	}
 
 }

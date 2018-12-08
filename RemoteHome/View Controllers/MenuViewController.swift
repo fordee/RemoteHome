@@ -56,60 +56,60 @@ class MenuViewController: UIViewController {
 	}
 
 	func loadUserValues() {
-		//self.resetAttributeValues()
 		self.fetchUserAttributes()
 	}
 
 	func fetchUserAttributes() {
 		//self.resetAttributeValues()
 		user = AppDelegate.defaultUserPool().currentUser()
-		user?.getDetails().continueOnSuccessWith(block: { (task) -> Any? in
-			guard task.result != nil else {
-				return nil
-			}
-			self.userAttributes = task.result?.userAttributes
-			self.mfaSettings = task.result?.mfaOptions
-			self.userAttributes?.forEach({ (attribute) in
+		user?.getDetails().continueOnSuccessWith { task in
+			guard let result = task.result else { return nil }
+
+			self.userAttributes = result.userAttributes
+			self.mfaSettings = result.mfaOptions
+			self.userAttributes?.forEach { attribute in
 				print("Name: " + attribute.name!)
-			})
+			}
 			print("Task: \(task)")
 //			DispatchQueue.main.async {
 //				self.setAttributeValues()
 //			}
 			self.fetchAccessId()
 			return nil
-		})
+		}
 	}
 
 	func fetchAccessId() {
-		guard let user = AppDelegate.defaultUserPool().currentUser() else {
-			return
-		}
-		user.getSession().continueOnSuccessWith(block: { (getSessionTask) -> AnyObject? in
-			DispatchQueue.main.async(execute: {
+		guard let user = AppDelegate.defaultUserPool().currentUser() else { return }
+
+		user.getSession().continueOnSuccessWith { getSessionTask in
+			DispatchQueue.main.async {
 				let getSessionResult = getSessionTask.result
 				//let idToken = getSessionResult?.idToken?.tokenString
 				self.tokenString = getSessionResult?.idToken?.tokenString
 				DeviceDataApi.shared.tokenString = self.tokenString
-				//IoTDeviceDataSource.token = self.tokenString
-				print("tokenString: \(String(describing: self.tokenString))")
+				// Get IoTData while we are here. TODO: Should return promise here.
+				self.refreshIoTData()
+			}
+		}
+	}
 
-				// Refresh IoT Data. This is so that the devices array has data
-				firstly {
-					DeviceDataApi.shared.refreshDeviceData()
-					}.catch { error in
-						print("We have an error folks: \(error)")
-						if let response = error as? PMKHTTPError,
-							let fr = response.failureReason,
-							let jsonReason = fr.convertToDictionary(),
-							let reason = jsonReason["message"] {
-							print(reason)
-						}
+	private func refreshIoTData() {
+		firstly {
+			DeviceDataApi.shared.refreshDeviceData()
+			}.catch { error in
+			print("We have an error folks: \(error)")
+			if let reason = error.getReason() {
+				print(reason)
+				self.showErrorDialog(reason)
+			}
+		}
+	}
 
-				}
-			})
-			return nil
-		})
+	private func showErrorDialog(_ message: String) {
+		let vc = ErrorViewController()
+		vc.message = message
+		self.present(vc, animated: true, completion:  nil)
 	}
 
 }
