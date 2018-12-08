@@ -8,9 +8,8 @@
 
 import PromiseKit
 
-public typealias JSON = [String: Any]
 public typealias HTTPHeaders = [String: String]
-public typealias Parameters = [String: Any]
+public typealias Parameters = [String: String]
 
 public enum HTTPMethod: String {
 	case get = "GET"
@@ -54,23 +53,21 @@ public class RestClient {
 		return rq
 	}
 
-	private func decodeParameters(_ parameters: JSON) -> [URLQueryItem] {
+	private func decodeParameters(_ parameters: Parameters) -> [URLQueryItem] {
 		var queryItems: [URLQueryItem] = []
 		for (key, value) in parameters {
-			guard let value = value as? String else { fatalError("Unexpected non-String in parameters") }
 			queryItems.append(URLQueryItem(name: key, value: value))
 		}
 		return queryItems
 	}
 
-	private func addHeaders(_ headers: JSON, request: inout URLRequest) {
+	private func addHeaders(_ headers: HTTPHeaders, request: inout URLRequest) {
 		for (key, value) in headers {
-			guard let value = value as? String else { fatalError("Unexpected non-String in headers") }
 			request.addValue(value, forHTTPHeaderField: key)
 		}
 	}
 
-	public func request<T: Decodable>(_ resource: Resource, parameters: [String: Any] = [:], headers: HTTPHeaders = [:]) -> Promise<T> {
+	public func request<T: Decodable>(_ resource: Resource, parameters: Parameters = [:], headers: HTTPHeaders = [:]) -> Promise<T> {
 		return Promise { seal in
 			URLSession.shared.dataTask(.promise, with: try makeUrlRequest(resource, headers: headers, parameters: parameters)).validate().map {
 			try JSONDecoder().decode(T.self, from: $0.data)
