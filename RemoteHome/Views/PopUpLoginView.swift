@@ -1,17 +1,17 @@
 //
-//  PopUpErrorView.swift
+//  PopUpLoginView.swift
 //  RemoteHome
 //
-//  Created by John Forde on 9/12/18.
+//  Created by John Forde on 10/12/18.
 //  Copyright © 2018 4DWare. All rights reserved.
 //
 
 import UIKit
 import Stevia
 
-class PopUpErrorView: UIView {
+class PopUpLoginView: UIView {
 
-	let errorView = ErrorView()
+	let loginView = LoginView()
 
 	convenience init() {
 		self.init(frame: CGRect.zero)
@@ -20,18 +20,19 @@ class PopUpErrorView: UIView {
 
 	func render() {
 		// Here we use Stevia to make our constraints more readable and maintainable.
-		sv([errorView.style(viewStyle)])
+		sv([loginView.style(viewStyle)])
 		backgroundColor = UIColor.clear
-		errorView.layer.cornerRadius = 8
+		loginView.layer.cornerRadius = 8
 
-		errorView.backgroundColor = UIColor.red
+		loginView.backgroundColor = UIColor.accentColor
 
-		layout((>=20),
-					 |-errorView-|,
-					 0)
+		layout(20,
+					 |-loginView-|,
+					 (>=20)
+					)
 	}
 
 	private func viewStyle(v: UIView) {
-		v.height(150)
+		v.height(260)
 	}
 }

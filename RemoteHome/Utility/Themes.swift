@@ -11,6 +11,7 @@ import UIKit
 extension UIColor {
 	static var backgroundColor: UIColor { return UIColor(named: "Background")!	}
 	static var controlColor: UIColor {	return UIColor(named: "Control")!	}
+	static var accentColor: UIColor { return UIColor(named: "Accent")! }
 	//static var darkColor: UIColor {	return UIColor(named: "DarkColor")!	}
 	static var textColor: UIColor { return UIColor.white }
 }

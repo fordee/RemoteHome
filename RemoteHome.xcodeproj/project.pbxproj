@@ -72,6 +72,7 @@
 		49EF5F0F21BC5C2A0021BAE3 /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F0E21BC5C2A0021BAE3 /* DimmingPresentationController.swift */; };
 		49EF5F1121BC5C630021BAE3 /* SlideInAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F1021BC5C630021BAE3 /* SlideInAnimationController.swift */; };
 		49EF5F1321BC5CBD0021BAE3 /* SlideOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F1221BC5CBD0021BAE3 /* SlideOutAnimationController.swift */; };
+		49EF5F1521BD82940021BAE3 /* PopUpLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F1421BD82940021BAE3 /* PopUpLoginView.swift */; };
 		9C6B5B57A8F433131B4C2671 /* Pods_RemoteHomeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57A26C8C8890D840D0593E10 /* Pods_RemoteHomeTests.framework */; };
 		ABF4FB7BE22B0E9CD875A3A8 /* Pods_RemoteHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404E48EDCF3E5AC223286D58 /* Pods_RemoteHome.framework */; };
 /* End PBXBuildFile section */
@@ -171,6 +172,7 @@
 		49EF5F0E21BC5C2A0021BAE3 /* DimmingPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
 		49EF5F1021BC5C630021BAE3 /* SlideInAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInAnimationController.swift; sourceTree = "<group>"; };
 		49EF5F1221BC5CBD0021BAE3 /* SlideOutAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOutAnimationController.swift; sourceTree = "<group>"; };
+		49EF5F1421BD82940021BAE3 /* PopUpLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpLoginView.swift; sourceTree = "<group>"; };
 		4E41540CA421A33659A4C077 /* Pods-RemoteHomeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RemoteHomeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RemoteHomeTests/Pods-RemoteHomeTests.release.xcconfig"; sourceTree = "<group>"; };
 		57A26C8C8890D840D0593E10 /* Pods_RemoteHomeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RemoteHomeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B58CF30467024604CA00B23 /* Pods-RemoteHome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RemoteHome.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RemoteHome/Pods-RemoteHome.debug.xcconfig"; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 				4910E8412193570500E538B4 /* MenuItemView.swift */,
 				4910E837218E1E3000E538B4 /* MenuItemView+MenuItem.swift */,
 				4941657221A872DC0034328C /* SignUpView.swift */,
+				49EF5F1421BD82940021BAE3 /* PopUpLoginView.swift */,
 				4941657621A88E020034328C /* LoginView.swift */,
 				4941658521A8E12B0034328C /* VerifyView.swift */,
 				49EF5F0B21BC59280021BAE3 /* PopUpErrorView.swift */,
@@ -605,6 +608,7 @@
 				49AB4C382185015600A7B38A /* AirflowDirectionView.swift in Sources */,
 				49C808BA215EF8E900796714 /* GradientView.swift in Sources */,
 				49B139092184118200330E3D /* FanCell+IoTDevice.swift in Sources */,
+				49EF5F1521BD82940021BAE3 /* PopUpLoginView.swift in Sources */,
 				49026A68216FBD0D0088501A /* HeatingViewController.swift in Sources */,
 				49026A6E217110700088501A /* ControlsView.swift in Sources */,
 				4941657121A8729D0034328C /* SignUpViewController.swift in Sources */,

@@ -22,7 +22,7 @@ class LoginView: UIView {
 	let loginButton = UIButton()
 	let signUpButton = UIButton()
 	let forgotPasswordButton = UIButton()
-	let verifyButton = UIButton()
+//	let verifyButton = UIButton()
 
 	weak var delegate: LoginViewControllerDelegate?
 
@@ -41,7 +41,7 @@ class LoginView: UIView {
 				loginButton.style(buttonStyle),
 				signUpButton.style(buttonStyle),
 				forgotPasswordButton.style(buttonStyle),
-				verifyButton.style(buttonStyle)
+//				verifyButton.style(buttonStyle)
 			])
 
 		backgroundColor = UIColor.backgroundColor
@@ -55,27 +55,27 @@ class LoginView: UIView {
 		signUpButton.addTarget(self, action: #selector(signUpButtonPressed(_:)), for: .touchUpInside)
 		forgotPasswordButton.text("Forgot Password")
 		forgotPasswordButton.addTarget(self, action: #selector(forgotPasswordButtonPressed(_:)), for: .touchUpInside)
-		verifyButton.text("Verify Email")
-		verifyButton.addTarget(self, action: #selector(verifyButtonPressed(_:)), for: .touchUpInside)
-		verifyButton.isHidden = true
+//		verifyButton.text("Verify Email")
+//		verifyButton.addTarget(self, action: #selector(verifyButtonPressed(_:)), for: .touchUpInside)
+//		verifyButton.isHidden = true
 		passwordField.returnKeyType = .done
 		emailAddressField.becomeFirstResponder()
 
 		equal(sizes: [signUpButton, forgotPasswordButton])
 
-		layout(44,
+		layout(8,
 					 |-8-emailAddressLabel-(>=8)-emailAddressField-8-|,
 					 8,
 					 |-8-passwordLabel-(>=8)-passwordField-8-|,
-					 8,
+					 16,
 					 |-8-loginButton-8-|,
 					 8,
 					 |-8-signUpButton-8-forgotPasswordButton-8-|,
 					 8,
 					 |-8-errorLabel-(>=8)-|,
 					 8,
-					 |-8-verifyButton-8-|,
-					 (>=8))
+				//	 |-8-verifyButton-8-|,
+					 (>=4))
 	}
 
 	private func labelStyle(lbl: UILabel) {

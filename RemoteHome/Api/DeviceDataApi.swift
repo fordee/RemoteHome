@@ -8,6 +8,7 @@
 
 import Foundation
 import PromiseKit
+import AWSCognitoIdentityProvider
 
 enum HvacMode: Int, Decodable {
 	case hvacHot = 0
@@ -102,15 +103,27 @@ public struct HvacCommandResponse: Codable {
 	var result: String
 }
 
+enum RHError: Error {
+	case token(String)
+}
+
 final public class DeviceDataApi {
 	// This is a Singleton
 	static let shared = DeviceDataApi()
+
+	private init() {
+
+	}
+
+	var user: AWSCognitoIdentityUser?
+	var userAttributes: [AWSCognitoIdentityProviderAttributeType]?
+	var mfaSettings: [AWSCognitoIdentityProviderMFAOptionType]?
 
 	// MARK: Public variables
 	public var tokenString: String? {
 		didSet {
 			// Uncomment tokenString to force an error for testing.
-			tokenString = "eyJraWQiOiJZaTZrdjB5U2crNHlTOE1CUUdHSDZiWktOSzVvMENWQXgwV1AreFhuWENBPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIwODUzODM2NC02ZTlhLTQyMmYtYmQ1MS1kNTE0M2UwMWMzNDEiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfZllBTnNHWUlSIiwiY29nbml0bzp1c2VybmFtZSI6IjA4NTM4MzY0LTZlOWEtNDIyZi1iZDUxLWQ1MTQzZTAxYzM0MSIsImdpdmVuX25hbWUiOiJKb2huIiwiYXVkIjoiMzJwYXBnZDQ1aGVucWpiOTRtbWVvMWlrNmMiLCJldmVudF9pZCI6IjQyMmYyODdkLWYzZWYtMTFlOC1hYTFjLTJiMWY2YjMzMmM3MyIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNTQzNTA2OTU2LCJleHAiOjE1NDQxMTQzNzgsImlhdCI6MTU0NDExMDc3OCwiZmFtaWx5X25hbWUiOiJGb3JkZSIsImVtYWlsIjoiZm9yZGVlQG1lLmNvbSJ9.iDu_5ut5qU_QSXR_78kiZAAyOTZlbeid6wug1CCzh6Sxbg_vfra_Md0bVahp3D6wYphGtfCjonwWg_UXftaYQHpVU29ytfUSGa8aAcNgcvzEQSvsv1c5ihdNgeZfz2OoDQGvle4hDZE8RMdylEUYMlMuUq9yTkxRYRg-QF7tXvYla9b8C0BhvzsfB0jfYaJcqxYJ8Pwm3nXrxk0ucPahxMubgh_N6X4R4o_vqHtrIIW8MESzvA6j_egWSi5G83hpD9hYbcMOw9HUPZaDjdptMYqJh4o1aSUFxjHpjtuls5NvSYzOlIboDuRpPd5FDNg6j08ms3Rrp7qME1BXvWqYoA"
+			//tokenString = "eyJraWQiOiJZaTZrdjB5U2crNHlTOE1CUUdHSDZiWktOSzVvMENWQXgwV1AreFhuWENBPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIwODUzODM2NC02ZTlhLTQyMmYtYmQ1MS1kNTE0M2UwMWMzNDEiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfZllBTnNHWUlSIiwiY29nbml0bzp1c2VybmFtZSI6IjA4NTM4MzY0LTZlOWEtNDIyZi1iZDUxLWQ1MTQzZTAxYzM0MSIsImdpdmVuX25hbWUiOiJKb2huIiwiYXVkIjoiMzJwYXBnZDQ1aGVucWpiOTRtbWVvMWlrNmMiLCJldmVudF9pZCI6IjQyMmYyODdkLWYzZWYtMTFlOC1hYTFjLTJiMWY2YjMzMmM3MyIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNTQzNTA2OTU2LCJleHAiOjE1NDQxMTQzNzgsImlhdCI6MTU0NDExMDc3OCwiZmFtaWx5X25hbWUiOiJGb3JkZSIsImVtYWlsIjoiZm9yZGVlQG1lLmNvbSJ9.iDu_5ut5qU_QSXR_78kiZAAyOTZlbeid6wug1CCzh6Sxbg_vfra_Md0bVahp3D6wYphGtfCjonwWg_UXftaYQHpVU29ytfUSGa8aAcNgcvzEQSvsv1c5ihdNgeZfz2OoDQGvle4hDZE8RMdylEUYMlMuUq9yTkxRYRg-QF7tXvYla9b8C0BhvzsfB0jfYaJcqxYJ8Pwm3nXrxk0ucPahxMubgh_N6X4R4o_vqHtrIIW8MESzvA6j_egWSi5G83hpD9hYbcMOw9HUPZaDjdptMYqJh4o1aSUFxjHpjtuls5NvSYzOlIboDuRpPd5FDNg6j08ms3Rrp7qME1BXvWqYoA"
 			service = DeviceService(token: tokenString)
 		}
 	}
@@ -145,7 +158,10 @@ final public class DeviceDataApi {
 	// Get the device data
 	public func refreshDeviceData() -> Promise<[IoTDevice]> {
 		return Promise {seal in
-			guard let service = service else { fatalError("DeviceService is unavailable") }
+			guard let service = service else {
+				throw RHError.token("Token not available yet. Try again later.")
+				//return seal.reject(error)
+			}
 
 			firstly {
 				service.temperature()
@@ -157,6 +173,38 @@ final public class DeviceDataApi {
 					seal.reject(error)
 			}
 		}
+	}
+
+	public func fetchUserAttributes() {
+		user = AppDelegate.defaultUserPool().currentUser()
+		user?.getDetails().continueOnSuccessWith { task in
+			guard let result = task.result else { return nil }
+
+			self.userAttributes = result.userAttributes
+			self.mfaSettings = result.mfaOptions
+			self.userAttributes?.forEach { attribute in
+				print("Name: " + attribute.name!)
+			}
+			print("Task: \(task)")
+			//			DispatchQueue.main.async {
+			//				self.setAttributeValues()
+			//			}
+			//self.fetchAccessId()
+			return nil
+		}
+	}
+
+	public func fetchAccessId() -> Promise<Void> {
+		user = AppDelegate.defaultUserPool().currentUser()
+		guard let user = user else { return  Promise() }
+
+		user.getSession().continueOnSuccessWith { getSessionTask in
+			DispatchQueue.main.async {
+				let getSessionResult = getSessionTask.result
+				self.tokenString = getSessionResult?.idToken?.tokenString
+			}
+		}
+		return Promise()
 	}
 
 	// MARK: Private functions

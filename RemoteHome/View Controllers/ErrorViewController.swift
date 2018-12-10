@@ -19,17 +19,13 @@ class ErrorViewController: UIViewController {
 
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-//		modalPresentationStyle = .custom
-//		transitioningDelegate = self
 	}
 
 	init() {
 		super.init(nibName: nil, bundle: nil) // Dummy to allow initialization
-
 		modalPresentationStyle = .custom
 		transitioningDelegate = self
 	}
-
 
 	override func loadView() {
 		view = v
@@ -40,7 +36,6 @@ class ErrorViewController: UIViewController {
 		v.errorView.delegate = self
 		v.errorView.render(with: message ?? "")
 	}
-
 }
 
 extension ErrorViewController: ErrorViewControllerDelegate {

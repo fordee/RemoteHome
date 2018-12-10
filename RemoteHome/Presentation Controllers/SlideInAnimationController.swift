@@ -27,7 +27,7 @@ UIViewControllerAnimatedTransitioning {
 			toView.center.y += containerView.bounds.size.height
 			//toView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
 
-			UIView.animate(withDuration: time, animations: {
+			UIView.animate(withDuration: time, delay: 0, options: .curveEaseIn, animations: {
 				toView.center.y -= containerView.bounds.size.height
 				//toView.transform = CGAffineTransform(scaleX: 1, y: 1)
 			}, completion: { finished in

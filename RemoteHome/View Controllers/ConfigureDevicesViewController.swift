@@ -38,26 +38,34 @@ class ConfigureDevicesViewController: UIViewController {
 		self.adapter.performUpdates(animated: true)
 
 		// And also perform a refresh
-		firstly {
-			DeviceDataApi.shared.refreshDeviceData()
-			}.done { devices in
-				self.iotDevices = devices
-				self.adapter.performUpdates(animated: true)
-			}.catch { error in
-				print(error.localizedDescription)
-		}
+		refreshData()
 	}
 
 	@objc func refreshDevices(_ notification: Notification) {
 		print("Notification received. Refreshing data.")
+		refreshData()
+	}
+
+	private func refreshData() {
 		firstly {
+			DeviceDataApi.shared.fetchAccessId()
+		}.then {
 			DeviceDataApi.shared.refreshDeviceData()
-			}.done { devices in
-				self.iotDevices = devices
-				self.adapter.reloadData(completion: nil)
-			}.catch { error in
-				print(error.localizedDescription)
+		}.done { devices in
+			self.iotDevices = devices
+			self.adapter.reloadData(completion: nil)
+		}.catch { error in
+			print(error.localizedDescription)
+			let reason = error.getReason()
+			print(reason)
+			self.showErrorDialog(reason)
 		}
+	}
+
+	private func showErrorDialog(_ message: String) {
+		let vc = ErrorViewController()
+		vc.message = message
+		self.present(vc, animated: true, completion:  nil)
 	}
 
 }

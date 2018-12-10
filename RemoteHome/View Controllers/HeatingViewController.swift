@@ -40,25 +40,39 @@ class HeatingViewController: UIViewController {
 		self.adapter.performUpdates(animated: true)
 		// And refresh data. It may be old.
 		firstly {
+			DeviceDataApi.shared.fetchAccessId()
+		}.then {
 			DeviceDataApi.shared.refreshDeviceData()
-			}.done { devices in
-				self.iotDevices = devices
-				self.adapter.performUpdates(animated: true)
-			}.catch { error in
-				print("Error: \(error)")
+		}.done { devices in
+			self.iotDevices = devices
+			self.adapter.performUpdates(animated: true)
+		}.catch { error in
+			print("Error: \(error)")
+			let reason = error.getReason()
+			self.showErrorDialog(reason)
 		}
 	}
 
 	@objc func refreshDevices(_ notification: Notification) {
 		print("Notification received. Refreshing data.")
 		firstly {
+			DeviceDataApi.shared.fetchAccessId()
+		}.then {
 			DeviceDataApi.shared.refreshDeviceData()
-			}.done { devices in
-				self.iotDevices = devices
-				self.adapter.reloadData(completion: nil)
-			}.catch { error in
-
+		}.done { devices in
+			self.iotDevices = devices
+			self.adapter.reloadData(completion: nil)
+		}.catch { error in
+			print("Error: \(error)")
+			let reason = error.getReason()
+			self.showErrorDialog(reason)
 		}
+	}
+
+	private func showErrorDialog(_ message: String) {
+		let vc = ErrorViewController()
+		vc.message = message
+		self.present(vc, animated: true, completion:  nil)
 	}
 }
 

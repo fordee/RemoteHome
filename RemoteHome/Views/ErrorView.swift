@@ -29,22 +29,18 @@ class ErrorView: UIView {
 			okButton.style(okButtonStyle)
 		)
 
-		// Here we layout the cell.
+		errorHeaderLabel.centerVertically()
 		layout(
-			4,
-			|-errorHeaderLabel.centerHorizontally()-|,
-			20,
-			|-errorMessageLabel.centerHorizontally()-|,
-			20,
-			|-okButton.centerHorizontally()-|,
-			4
+			8,
+			|-errorHeaderLabel-|,
+			10,
+			|-errorMessageLabel-|,
+			10,
+			|-okButton-|,
+			8
 		)
 
-		// Configure visual elements
-		backgroundColor = UIColor.white
-		//menuItemLabel.numberOfLines = 0
-		//layer.cornerRadius = 8
-		height(100)
+
 	}
 
 	private func errorHeaderLabelStyle(lbl: UILabel) {
@@ -55,23 +51,24 @@ class ErrorView: UIView {
 
 	private func errorMessageLabelStyle(lbl: UILabel) {
 		labelStyle(lbl: lbl)
+		lbl.font = .detailFont
+		lbl.numberOfLines = 0 // multiline
 	}
 
 	private func labelStyle(lbl: UILabel) {
 		lbl.height(44)
-		lbl.textColor = .black
+		lbl.textColor = .white
 		lbl.font = .cellFont
 	}
 
 	private func okButtonStyle(btn: UIButton) {
 		btn.backgroundColor = UIColor.white
-		btn.tintColor = UIColor.blue
 		btn.setTitleColor(.black, for: .normal)
 		btn.height(44)
 		btn.setTitle("Ok", for: .normal)
 		btn.addTarget(self, action: #selector(okButtonPressed(_:)), for: .touchUpInside)
 		//btn.width(>=44)
-		//btn.layer.cornerRadius = 8
+		btn.layer.cornerRadius = 8
 	}
 
 	@objc func okButtonPressed(_ sender: Any) {

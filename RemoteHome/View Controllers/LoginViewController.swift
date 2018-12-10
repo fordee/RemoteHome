@@ -20,7 +20,17 @@ class LoginViewController: UIViewController {
 
 	var passwordAuthenticationCompletion: AWSTaskCompletionSource<AWSCognitoIdentityPasswordAuthenticationDetails>?
 
-	let v = LoginView()
+	required init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+	}
+
+	init() {
+		super.init(nibName: nil, bundle: nil) // Dummy to allow initialization
+		modalPresentationStyle = .custom
+		//transitioningDelegate = self
+	}
+
+	let v = PopUpLoginView()
 
 	override func loadView() {
 		view = v
@@ -28,7 +38,7 @@ class LoginViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		v.delegate = self
+		v.loginView.delegate = self
 	}
 
 }
@@ -71,8 +81,8 @@ extension LoginViewController: AWSCognitoIdentityPasswordAuthentication {
 	public func getDetails(_ authenticationInput: AWSCognitoIdentityPasswordAuthenticationInput, passwordAuthenticationCompletionSource: AWSTaskCompletionSource<AWSCognitoIdentityPasswordAuthenticationDetails>) {
 		self.passwordAuthenticationCompletion = passwordAuthenticationCompletionSource
 		DispatchQueue.main.async {
-			if (self.v.emailAddressField.text == nil) {
-				self.v.emailAddressField.text = authenticationInput.lastKnownUsername
+			if (self.v.loginView.emailAddressField.text == nil) {
+				self.v.loginView.emailAddressField.text = authenticationInput.lastKnownUsername
 			}
 		}
 	}
@@ -81,14 +91,14 @@ extension LoginViewController: AWSCognitoIdentityPasswordAuthentication {
 		DispatchQueue.main.async {
 			if let error = error {
 				let message = (error as NSError).userInfo["message"] as? String ?? ""
-				self.v.errorLabel.text = "Cannot Login. \(message)"
+				self.v.loginView.errorLabel.text = "Cannot Login. \(message)"
 //				if message == "User is not confirmed." {
 //					self.v.verifyButton.isHidden = false
 //				}
 			} else {
 				self.dismiss(animated: true, completion: {
-					self.v.emailAddressField.text = nil
-					self.v.passwordField.text = nil
+					self.v.loginView.emailAddressField.text = nil
+					self.v.loginView.passwordField.text = nil
 				})
 			}
 		}
