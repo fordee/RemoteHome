@@ -12,11 +12,6 @@ import PromiseKit
 
 class HeatingViewController: UIViewController {
 
-	//let tempDataApi = TempDataApi.shared
-	var tempData: [DeviceData] = []
-	var temps: [Double] = []
-	var humids: [Double] = []
-
 	var iotDevices: [IoTDevice] = []
 	let v = ControlsView()
 

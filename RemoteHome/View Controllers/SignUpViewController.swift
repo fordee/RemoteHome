@@ -11,6 +11,7 @@ import AWSCognitoIdentityProvider
 
 protocol SignUpViewControllerDelegate: class {
 	func handleSignUp(userInfo: UserSignUpInfo)
+	func handleCancel()
 }
 
 class SignUpViewController: UIViewController {
@@ -72,6 +73,10 @@ extension SignUpViewController: SignUpViewControllerDelegate {
 				}
 				return nil
 		}
+	}
+
+	func handleCancel() {
+		dismiss(animated: true)
 	}
 
 }

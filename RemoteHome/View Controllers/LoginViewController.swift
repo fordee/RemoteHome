@@ -14,6 +14,7 @@ protocol LoginViewControllerDelegate: class {
 	func handleSignUp()
 	func handleForgotPassword(email: String)
 	func handleVerify(email: String)
+	func handleCancel()
 }
 
 class LoginViewController: UIViewController {
@@ -44,7 +45,9 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: LoginViewControllerDelegate {
+
 	func handleSignUp() {
+
 		present(SignUpViewController(), animated: true, completion:  nil)
 	}
 
@@ -53,6 +56,11 @@ extension LoginViewController: LoginViewControllerDelegate {
 		let authDetails = AWSCognitoIdentityPasswordAuthenticationDetails(username: loginInfo.email, password: loginInfo.password )
 		passwordAuthenticationCompletion?.set(result: authDetails)
 	}
+
+	func handleCancel() {
+		dismiss(animated: true)
+	}
+
 
 	func handleForgotPassword(email: String) {
 		print("\(email) forgot their password.")
@@ -96,10 +104,10 @@ extension LoginViewController: AWSCognitoIdentityPasswordAuthentication {
 //					self.v.verifyButton.isHidden = false
 //				}
 			} else {
-				self.dismiss(animated: true, completion: {
+				self.dismiss(animated: true) {
 					self.v.loginView.emailAddressField.text = nil
 					self.v.loginView.passwordField.text = nil
-				})
+				}
 			}
 		}
 	}

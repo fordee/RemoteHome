@@ -30,9 +30,6 @@ class SettingsMenuViewController: UIViewController {
 		super.viewDidLoad()
 		navigationItem.title = "Settings"
 
-		// Refresh IoT Data
-		//IoTDeviceDataSource.refreshTempData()
-
 		// Setup IGListView Adapter
 		adapter.collectionView = v.listView
 		adapter.dataSource = self

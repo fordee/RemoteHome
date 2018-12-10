@@ -11,6 +11,7 @@ import Stevia
 
 class SignUpView: UIView {
 
+	let cancelButton = UIButton()
 	let emailAddressLabel = UILabel()
 	let emailAddressField = UITextField()
 	let firstNameLabel = UILabel()
@@ -34,7 +35,8 @@ class SignUpView: UIView {
 
 	func render() {
 		// Here we use Stevia to make our constraints more readable and maintainable.
-		sv([emailAddressLabel.style(labelStyle),
+		sv([cancelButton.style(cancelButtonStyle),
+				emailAddressLabel.style(labelStyle),
 				emailAddressField.style(emailFieldStyle),
 				firstNameLabel.style(labelStyle),
 				firstNameField.style(nameFieldStyle),
@@ -61,7 +63,9 @@ class SignUpView: UIView {
 		emailAddressField.becomeFirstResponder()
 
 
-		layout(44,
+		layout(20,
+					 |-errorLabel-(>=8)-cancelButton-|,
+					 4,
 					 |-8-emailAddressLabel-(>=10)-emailAddressField-8-|,
 					 8,
 					 |-8-firstNameLabel-(>=10)-firstNameField-8-|,
@@ -73,8 +77,6 @@ class SignUpView: UIView {
 					 |-8-password2Label-(>=10)-password2Field-8-|,
 					 8,
 					 |-8-setupUserButton-8-|,
-					 8,
-					 |-8-errorLabel-(>=8)-|,
 					 (>=8))
 	}
 
@@ -86,6 +88,7 @@ class SignUpView: UIView {
 
 	private func errorLabelStyle(lbl: UILabel) {
 		labelStyle(lbl: lbl)
+		lbl.height(32)
 		lbl.textColor = .red
 	}
 
@@ -135,6 +138,19 @@ class SignUpView: UIView {
 			errorLabel.text = ""
 			delegate?.handleSignUp(userInfo: userInfo)
 		}
+	}
+
+	private func cancelButtonStyle(btn: UIButton) {
+		btn.setTitleColor(.white, for: .normal)
+		btn.height(20)
+		btn.setTitle("X", for: .normal)
+		btn.addTarget(self, action: #selector(cancelButtonPressed(_:)), for: .touchUpInside)
+	}
+
+	@objc func cancelButtonPressed(_ sender: Any) {
+		print("Cancel Button Pressed.")
+		errorLabel.text = ""
+		delegate?.handleCancel()
 	}
 
 	private func validateFields() -> UserSignUpInfo? {

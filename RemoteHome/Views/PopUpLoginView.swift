@@ -35,4 +35,5 @@ class PopUpLoginView: UIView {
 	private func viewStyle(v: UIView) {
 		v.height(260)
 	}
+
 }
