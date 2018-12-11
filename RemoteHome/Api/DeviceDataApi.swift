@@ -203,6 +203,7 @@ final public class DeviceDataApi {
 				let getSessionResult = getSessionTask.result
 				self.tokenString = getSessionResult?.idToken?.tokenString
 			}
+			return Promise()
 		}
 		return Promise()
 	}
