@@ -9,7 +9,7 @@
 import UIKit
 import Stevia
 
-class SignUpView: UIView {
+class SignUpView: UIView, ValidatesEmail, ValidatesPassword, ValidatesUserInfoField {
 
 	let cancelButton = UIButton()
 	let emailAddressLabel = UILabel()
@@ -160,8 +160,28 @@ class SignUpView: UIView {
 		guard let password1 = password1Field.text?.trimmingCharacters(in: .whitespaces) else {return nil}
 		guard let password2 = password2Field.text?.trimmingCharacters(in: .whitespaces) else {return nil}
 
+		guard isEmailValid(email) else {
+			errorLabel.text = "Please enter a valid email."
+			return nil
+		}
+
+		guard isUserInfoFieldValid(firstName) else {
+			errorLabel.text = "Please enter a valid first name."
+			return nil
+		}
+
+		guard isUserInfoFieldValid(lastName) else {
+			errorLabel.text = "Please enter a valid last name."
+			return nil
+		}
+
+		guard isPasswordValid(password1) else {
+			errorLabel.text = "Please enter a valid password."
+			return nil
+		}
+
 		if password1Field.text != password2Field.text {
-			errorLabel.text = "Passwords do not match"
+			errorLabel.text = "Passwords do not match."
 			return nil
 		}
 

@@ -19,7 +19,17 @@ class SignUpViewController: UIViewController {
 	var user: AWSCognitoIdentityUser?
 	var codeDeliveryDetails: AWSCognitoIdentityProviderCodeDeliveryDetailsType?
 
-	let v = SignUpView()
+	let v = PopUpSignUpView()
+
+	required init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+	}
+
+	init() {
+		super.init(nibName: nil, bundle: nil) // Dummy to allow initialization
+		modalPresentationStyle = .custom
+		//transitioningDelegate = self
+	}
 
 	override func loadView() {
 		view = v
@@ -28,7 +38,7 @@ class SignUpViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		v.delegate = self
+		v.signUpView.delegate = self
 
 		navigationItem.title = "Sign Up"
   }
