@@ -57,14 +57,7 @@ class MenuViewController: UIViewController {
 		}
 	}
 
-	private func showErrorDialog(_ message: String) {
-		print("presentedViewController: \(presentedViewController == nil)")
-		if presentedViewController == nil { // If another vc is alreadey beig oresent (e.g. login vc), don't present
-			let vc = ErrorViewController()
-			vc.message = message
-			self.present(vc, animated: true, completion:  nil)
-		}
-	}
+	
 
 }
 

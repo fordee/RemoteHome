@@ -63,12 +63,6 @@ class HeatingViewController: UIViewController {
 			self.showErrorDialog(reason)
 		}
 	}
-
-	private func showErrorDialog(_ message: String) {
-		let vc = ErrorViewController()
-		vc.message = message
-		self.present(vc, animated: true, completion:  nil)
-	}
 }
 
 // MARK: List Adapter Data Source

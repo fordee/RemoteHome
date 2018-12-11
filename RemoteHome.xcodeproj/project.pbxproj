@@ -65,6 +65,7 @@
 		49C808C3215F352800796714 /* DeviceDataApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C808C2215F352800796714 /* DeviceDataApi.swift */; };
 		49E76A5C21BEDBCB00D3574B /* PopUpSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E76A5B21BEDBCB00D3574B /* PopUpSignUpView.swift */; };
 		49E76A5E21C01CA100D3574B /* ValidationProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E76A5D21C01CA100D3574B /* ValidationProtocols.swift */; };
+		49E76A6021C0307600D3574B /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E76A5F21C0307600D3574B /* UIViewController+Utils.swift */; };
 		49EF5F0221BAF7A60021BAE3 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F0121BAF7A60021BAE3 /* String+Utils.swift */; };
 		49EF5F0421BC40B50021BAE3 /* Error+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F0321BC40B50021BAE3 /* Error+Utils.swift */; };
 		49EF5F0621BC48490021BAE3 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F0521BC48490021BAE3 /* ErrorViewController.swift */; };
@@ -167,6 +168,7 @@
 		49C808C2215F352800796714 /* DeviceDataApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDataApi.swift; sourceTree = "<group>"; };
 		49E76A5B21BEDBCB00D3574B /* PopUpSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpSignUpView.swift; sourceTree = "<group>"; };
 		49E76A5D21C01CA100D3574B /* ValidationProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationProtocols.swift; sourceTree = "<group>"; };
+		49E76A5F21C0307600D3574B /* UIViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
 		49EF5F0121BAF7A60021BAE3 /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
 		49EF5F0321BC40B50021BAE3 /* Error+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Utils.swift"; sourceTree = "<group>"; };
 		49EF5F0521BC48490021BAE3 /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 				49EF5F0121BAF7A60021BAE3 /* String+Utils.swift */,
 				49EF5F0321BC40B50021BAE3 /* Error+Utils.swift */,
 				49E76A5D21C01CA100D3574B /* ValidationProtocols.swift */,
+				49E76A5F21C0307600D3574B /* UIViewController+Utils.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -586,6 +589,7 @@
 			files = (
 				4910E8402193521F00E538B4 /* MenuView.swift in Sources */,
 				4910E8482194A2FB00E538B4 /* SettingsMenuViewController.swift in Sources */,
+				49E76A6021C0307600D3574B /* UIViewController+Utils.swift in Sources */,
 				49C8088F215EF74200796714 /* DashboardViewController.swift in Sources */,
 				49EF5F1321BC5CBD0021BAE3 /* SlideOutAnimationController.swift in Sources */,
 				495CE98F2178EE4900851172 /* HeaderView+IoTDevice.swift in Sources */,
