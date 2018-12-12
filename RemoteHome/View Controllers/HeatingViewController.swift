@@ -36,7 +36,7 @@ class HeatingViewController: UIViewController {
 		// And refresh data. It may be old.
 		firstly {
 			DeviceDataApi.shared.fetchAccessId()
-		}.then {
+		}.then { accessString in
 			DeviceDataApi.shared.refreshDeviceData()
 		}.done { devices in
 			self.iotDevices = devices
@@ -52,7 +52,7 @@ class HeatingViewController: UIViewController {
 		print("Notification received. Refreshing data.")
 		firstly {
 			DeviceDataApi.shared.fetchAccessId()
-		}.then {
+		}.then { accessString in
 			DeviceDataApi.shared.refreshDeviceData()
 		}.done { devices in
 			self.iotDevices = devices

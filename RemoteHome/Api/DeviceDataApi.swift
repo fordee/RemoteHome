@@ -194,17 +194,26 @@ final public class DeviceDataApi {
 		}
 	}
 
-	public func fetchAccessId() -> Promise<Void> {
-		user = AppDelegate.defaultUserPool().currentUser()
-		guard let user = user else { return  Promise() }
+	public func fetchAccessId() -> Promise<String> {
 
-		user.getSession().continueOnSuccessWith { getSessionTask in
-			DispatchQueue.main.async {
+
+		// TODO: Sort out this flow
+		return Promise { seal in
+			user = AppDelegate.defaultUserPool().currentUser()
+			guard let user = user else { throw RHError.token("Could not retrieve token. User is nil") }
+			user.getSession().continueOnSuccessWith { getSessionTask in
+				print(getSessionTask)
 				let getSessionResult = getSessionTask.result
 				self.tokenString = getSessionResult?.idToken?.tokenString
+				if let tokenString = self.tokenString {
+					seal.fulfill(tokenString)
+				}
+				let error = RHError.token("Could not retrieve token")
+				return error
 			}
+			throw RHError.token("Could not retrieve token")
 		}
-		return Promise()
+
 	}
 
 	// MARK: Private functions

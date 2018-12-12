@@ -49,7 +49,7 @@ class ConfigureDevicesViewController: UIViewController {
 	private func refreshData() {
 		firstly {
 			DeviceDataApi.shared.fetchAccessId()
-		}.then {
+		}.then { accessString in
 			DeviceDataApi.shared.refreshDeviceData()
 		}.done { devices in
 			self.iotDevices = devices

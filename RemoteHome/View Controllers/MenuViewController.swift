@@ -47,7 +47,7 @@ class MenuViewController: UIViewController {
 	private func refreshIoTData() {
 		firstly {
 			DeviceDataApi.shared.fetchAccessId()
-		}.then {
+		}.then { accessString in
 			DeviceDataApi.shared.refreshDeviceData()
 		}.done { devices in
 			// Do nothing. DeviceDataApi devices is populated.
