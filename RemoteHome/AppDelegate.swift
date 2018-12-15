@@ -108,16 +108,16 @@ extension Notification.Name {
 extension AppDelegate: AWSCognitoIdentityInteractiveAuthenticationDelegate {
 
 	func startPasswordAuthentication() -> AWSCognitoIdentityPasswordAuthentication {
-		if (self.navigationController == nil) {
-			self.navigationController = self.window?.rootViewController as? UINavigationController
+		if (navigationController == nil) {
+			navigationController = window?.rootViewController as? UINavigationController
 		}
 
-		if (self.loginViewController == nil) {
-			self.loginViewController = LoginViewController()
+		if (loginViewController == nil) {
+			loginViewController = LoginViewController()
 		}
 
 		DispatchQueue.main.async {
-			if(self.loginViewController!.isViewLoaded || self.loginViewController!.view.window == nil) {
+			if (self.loginViewController!.isViewLoaded || self.loginViewController!.view.window == nil) {
 				self.navigationController?.present(self.loginViewController!, animated: true, completion: nil)
 			}
 		}

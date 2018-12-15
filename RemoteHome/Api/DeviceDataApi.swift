@@ -196,7 +196,6 @@ final public class DeviceDataApi {
 
 	public func fetchAccessId() -> Promise<String> {
 
-
 		// TODO: Sort out this flow
 		return Promise { seal in
 			user = AppDelegate.defaultUserPool().currentUser()
@@ -206,12 +205,12 @@ final public class DeviceDataApi {
 				let getSessionResult = getSessionTask.result
 				self.tokenString = getSessionResult?.idToken?.tokenString
 				if let tokenString = self.tokenString {
-					seal.fulfill(tokenString)
+					return seal.fulfill(tokenString)
+				} else {
+					let error = RHError.token("Could not retrieve token")
+					return seal.reject(error)
 				}
-				let error = RHError.token("Could not retrieve token")
-				return error
 			}
-			throw RHError.token("Could not retrieve token")
 		}
 
 	}

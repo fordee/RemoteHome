@@ -20,6 +20,10 @@ protocol ValidatesUserInfoField {
 	func isUserInfoFieldValid(_ userInfoField: String) -> Bool
 }
 
+protocol ValidatesVerificationCode {
+	func isVerificationCodeValid(_ verificationCode: String) -> Bool
+}
+
 extension ValidatesEmail {
 	func isEmailValid(_ email: String) -> Bool {
 
@@ -48,3 +52,14 @@ extension ValidatesUserInfoField {
 		}
 	}
 }
+
+extension ValidatesVerificationCode {
+	func isVerificationCodeValid(_ verificationCode: String) -> Bool {
+		if verificationCode.count != 6 {
+			return false
+		} else {
+			return true
+		}
+	}
+}
+

@@ -64,6 +64,23 @@ extension LoginViewController: LoginViewControllerDelegate {
 
 	func handleForgotPassword(email: String) {
 		print("\(email) forgot their password.")
+
+		let user = AppDelegate.defaultUserPool().getUser(email)
+		user.forgotPassword().continueWith{ [weak self] (task: AWSTask) -> AnyObject? in
+			guard let strongSelf = self else { return nil }
+			DispatchQueue.main.async {
+				if let error = task.error as NSError? {
+					strongSelf.v.loginView.errorLabel.text = error.userInfo["message"] as? String 
+				} else {
+					let vc = ForgotPasswordViewController()
+					vc.v.forgotPasswordView.emailField.text = email
+					strongSelf.present(vc, animated: true, completion: nil)
+				}
+			}
+			return nil
+		}
+
+		//present(ForgotPasswordViewController(), animated: true, completion: nil)
 	}
 
 	func handleVerify(email: String) {

@@ -38,6 +38,9 @@
 		495CE98F2178EE4900851172 /* HeaderView+IoTDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495CE98E2178EE4900851172 /* HeaderView+IoTDevice.swift */; };
 		495CE9932179033200851172 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 495CE9912179032400851172 /* Roboto-Bold.ttf */; };
 		495CE9942179033200851172 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 495CE9922179032400851172 /* Roboto-Regular.ttf */; };
+		497274D321C468AF00F17771 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497274D221C468AF00F17771 /* ForgotPasswordViewController.swift */; };
+		497274D521C469D900F17771 /* PopUpForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497274D421C469D900F17771 /* PopUpForgotPasswordView.swift */; };
+		497274D721C46A3900F17771 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497274D621C46A3900F17771 /* ForgotPasswordView.swift */; };
 		4983436021AC515C00B95A47 /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4983435F21AC515C00B95A47 /* RestClient.swift */; };
 		4983436221AC612800B95A47 /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4983436121AC612800B95A47 /* DeviceService.swift */; };
 		4983436421B8371000B95A47 /* ApiConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4983436321B8371000B95A47 /* ApiConfig.plist */; };
@@ -137,6 +140,9 @@
 		495CE98E2178EE4900851172 /* HeaderView+IoTDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HeaderView+IoTDevice.swift"; sourceTree = "<group>"; };
 		495CE9912179032400851172 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		495CE9922179032400851172 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		497274D221C468AF00F17771 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		497274D421C469D900F17771 /* PopUpForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpForgotPasswordView.swift; sourceTree = "<group>"; };
+		497274D621C46A3900F17771 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		4983435F21AC515C00B95A47 /* RestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
 		4983436121AC612800B95A47 /* DeviceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceService.swift; sourceTree = "<group>"; };
 		4983436321B8371000B95A47 /* ApiConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ApiConfig.plist; sourceTree = "<group>"; };
@@ -239,6 +245,7 @@
 		495CE9902179030200851172 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				49C80893215EF74300796714 /* Assets.xcassets */,
 				495CE9912179032400851172 /* Roboto-Bold.ttf */,
 				495CE9922179032400851172 /* Roboto-Regular.ttf */,
 			);
@@ -278,6 +285,7 @@
 				4910E83F2193521F00E538B4 /* MenuView.swift */,
 				4910E8412193570500E538B4 /* MenuItemView.swift */,
 				4910E837218E1E3000E538B4 /* MenuItemView+MenuItem.swift */,
+				49E76A5B21BEDBCB00D3574B /* PopUpSignUpView.swift */,
 				4941657221A872DC0034328C /* SignUpView.swift */,
 				49EF5F1421BD82940021BAE3 /* PopUpLoginView.swift */,
 				4941657621A88E020034328C /* LoginView.swift */,
@@ -285,7 +293,8 @@
 				49EF5F0B21BC59280021BAE3 /* PopUpErrorView.swift */,
 				49EF5F0721BC48CA0021BAE3 /* ErrorView.swift */,
 				49EF5F0921BC4B050021BAE3 /* ErrorView+String.swift */,
-				49E76A5B21BEDBCB00D3574B /* PopUpSignUpView.swift */,
+				497274D421C469D900F17771 /* PopUpForgotPasswordView.swift */,
+				497274D621C46A3900F17771 /* ForgotPasswordView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -302,6 +311,7 @@
 				4941657821A890030034328C /* LoginViewController.swift */,
 				4941658321A8E0EC0034328C /* VerifyViewController.swift */,
 				49EF5F0521BC48490021BAE3 /* ErrorViewController.swift */,
+				497274D221C468AF00F17771 /* ForgotPasswordViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -385,7 +395,6 @@
 				499BC04321712AC000C5A98B /* Utility */,
 				49C80895215EF74300796714 /* LaunchScreen.storyboard */,
 				49C8088C215EF74200796714 /* AppDelegate.swift */,
-				49C80893215EF74300796714 /* Assets.xcassets */,
 				49C80898215EF74300796714 /* Info.plist */,
 			);
 			path = RemoteHome;
@@ -595,6 +604,7 @@
 				495CE98F2178EE4900851172 /* HeaderView+IoTDevice.swift in Sources */,
 				49E76A5C21BEDBCB00D3574B /* PopUpSignUpView.swift in Sources */,
 				49EF5F0A21BC4B050021BAE3 /* ErrorView+String.swift in Sources */,
+				497274D721C46A3900F17771 /* ForgotPasswordView.swift in Sources */,
 				495CE98D2178ED5500851172 /* HeaderView.swift in Sources */,
 				499BC04521712D0700C5A98B /* TemperatureCell.swift in Sources */,
 				49C8088D215EF74200796714 /* AppDelegate.swift in Sources */,
@@ -630,6 +640,7 @@
 				4910E84E2194E23A00E538B4 /* ConfigDeviceSectionController.swift in Sources */,
 				4941658621A8E12B0034328C /* VerifyView.swift in Sources */,
 				49EF5F1121BC5C630021BAE3 /* SlideInAnimationController.swift in Sources */,
+				497274D521C469D900F17771 /* PopUpForgotPasswordView.swift in Sources */,
 				49B139032183A0BE00330E3D /* SetTemperatureView+IoTDevice.swift in Sources */,
 				498F01A121861BB200AC308E /* AirflowDirectionView+IoTDevice.swift in Sources */,
 				49AB4C362184FEF000A7B38A /* AirflowCell.swift in Sources */,
@@ -637,6 +648,7 @@
 				49EF5F0C21BC59280021BAE3 /* PopUpErrorView.swift in Sources */,
 				4941657921A890030034328C /* LoginViewController.swift in Sources */,
 				49EF5F0F21BC5C2A0021BAE3 /* DimmingPresentationController.swift in Sources */,
+				497274D321C468AF00F17771 /* ForgotPasswordViewController.swift in Sources */,
 				49B13901218392C600330E3D /* ControlCell+IoTDevice.swift in Sources */,
 				49EF5F0621BC48490021BAE3 /* ErrorViewController.swift in Sources */,
 				49EF5F0221BAF7A60021BAE3 /* String+Utils.swift in Sources */,

@@ -156,7 +156,7 @@ class LoginView: UIView, ValidatesEmail, ValidatesPassword {
 
 	@objc func forgotPasswordButtonPressed(_ sender: Any) {
 		print("Forgot Password Button Pressed.")
-		if let emailAddress = emailAddressField.text, emailAddress.count > 3 {
+		if let emailAddress = validateEmail() {
 			errorLabel.text("")
 			delegate?.handleForgotPassword(email: emailAddress)
 		} else {
@@ -169,6 +169,16 @@ class LoginView: UIView, ValidatesEmail, ValidatesPassword {
 		if let emailAddress = emailAddressField.text, emailAddress.count > 3 {
 			delegate?.handleVerify(email: emailAddress)
 		}
+	}
+
+	private func validateEmail() -> String? {
+
+		guard let email = emailAddressField.text?.trimmingCharacters(in: .whitespaces) else {return nil}
+		guard isEmailValid(email) else {
+			errorLabel.text = "Please enter a valid email."
+			return nil
+		}
+		return email
 	}
 
 
