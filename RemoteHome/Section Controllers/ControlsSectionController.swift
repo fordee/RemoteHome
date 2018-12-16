@@ -121,7 +121,7 @@ class ControlsSectionController: ListSectionController {
 			collectionContext?.performBatch(animated: true, updates: { batchContext in
 				batchContext.reload(self)
 			})
-			if let deviceid = iotDevice?.deviceName, expanded == true {
+			if let deviceid = iotDevice?.deviceId, expanded == true {
 				// Send notification to collapse all other cells
 				NotificationCenter.default.post(name: .collapseCells, object: nil, userInfo: ["deviceid" : deviceid])
 			}
@@ -130,7 +130,7 @@ class ControlsSectionController: ListSectionController {
 
 	@objc func collapseCells(_ notification: Notification) {
 		// Notification to collapse this cell if it isn't the cell that sent it (deteremined by the deviceid).
-		if let deviceid = notification.userInfo?["deviceid"] as? String, let thisDeviceid = iotDevice?.deviceName, deviceid != thisDeviceid {
+		if let deviceid = notification.userInfo?["deviceid"] as? String, let thisDeviceid = iotDevice?.deviceId, deviceid != thisDeviceid {
 			expanded = false
 			collectionContext?.performBatch(animated: true, updates: { batchContext in
 				batchContext.reload(self)

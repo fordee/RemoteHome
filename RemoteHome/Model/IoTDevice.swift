@@ -11,10 +11,12 @@ import IGListKit
 
 public class IoTDevice {
 	let dateFormatter = DateFormatter()
-	var deviceName = ""
+	var deviceId = ""
 	var temperature = ""
 	var humidity = ""
 	var dateTime = ""
+	var deviceName = ""
+
 
 	var hvacCommand = HvacCommand()
 
@@ -36,31 +38,31 @@ public class IoTDevice {
 		return now.timeIntervalSince1970 - dateTimeDate!.timeIntervalSince1970
 	}
 
-	public convenience init(deviceName: String, temperature: String) {
-		self.init(deviceName: deviceName)
+	public convenience init(deviceId: String, temperature: String) {
+		self.init(deviceId: deviceId)
 		self.temperature = temperature
 	}
 
-	public init(deviceName: String) {
-		self.deviceName = deviceName
+	public init(deviceId: String) {
+		self.deviceId = deviceId
 		dateFormatter.dateFormat = "yyyy'-'MM'-'dd' 'HH':'mm':'ss'.'SSSSSS"
 		dateFormatter.timeZone = TimeZone(abbreviation: "GMT")//.current
 	}
 
 	// MARK: Equatable Protocol
 	static func == (lhs: IoTDevice, rhs: IoTDevice) -> Bool {
-		return lhs.deviceName == rhs.deviceName
+		return lhs.deviceId == rhs.deviceId
 	}
 
 }
 
 extension IoTDevice: ListDiffable {
 	public func diffIdentifier() -> NSObjectProtocol {
-		return deviceName as NSObjectProtocol
+		return deviceId as NSObjectProtocol
 	}
 
 	public func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
 		guard let object = object as? IoTDevice else { return false }
-		return self.deviceName == object.deviceName
+		return self.deviceId == object.deviceId
 	}
 }

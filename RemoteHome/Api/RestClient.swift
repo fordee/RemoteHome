@@ -83,6 +83,7 @@ public class RestClient {
 public enum Resource {
 	case temperature
 	case aircon
+	case device
 
 	public var resource: (method: HTTPMethod, route: String) {
 		switch self {
@@ -90,6 +91,8 @@ public enum Resource {
 			return (.get ,"/temperature")
 		case .aircon:
 			return (.post, "/aircon")
+		case .device:
+			return (.post, "/device")
 		}
 	}
 }

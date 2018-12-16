@@ -11,14 +11,17 @@ import UIKit
 extension HeaderView {
 
 	func render(with: IoTDevice) {
-		switch with.deviceName {
-		case "esp32_9AD3B4":
-			deviceLabel.text = "Hallway"
-		case "esp32_9B3C48":
-			deviceLabel.text = "Computer Room"
-		default:
-			deviceLabel.text = with.deviceName
-		}
+
+		deviceLabel.text = with.deviceName
+		
+//		switch with.deviceId {
+//		case "esp32_9AD3B4":
+//			deviceLabel.text = "Hallway"
+//		case "esp32_9B3C48":
+//			deviceLabel.text = "Computer Room"
+//		default:
+//			deviceLabel.text = with.deviceId
+//		}
 
 		if let temp = with.temperatureDouble {
 			temperatureLabel.text = String(format: "%0.1f°C", temp)

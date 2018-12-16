@@ -1,17 +1,17 @@
 //
-//  MenuViewCell.swift
+//  ConfigureDeviceCell.swift
 //  RemoteHome
 //
-//  Created by John Forde on 4/11/18.
+//  Created by John Forde on 16/12/18.
 //  Copyright © 2018 4DWare. All rights reserved.
 //
 
 import UIKit
 import Stevia
 
-class MenuViewCell: UICollectionViewCell {
+class ConfigureDeviceCell: UICollectionViewCell {
 
-	var menuItemView = MenuItemView()
+	let configureDeviceView = ConfigureDeviceView()
 
 	required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder)}
 
@@ -19,13 +19,13 @@ class MenuViewCell: UICollectionViewCell {
 		super.init(frame: frame)
 
 		sv(
-			menuItemView
+			configureDeviceView
 		)
 
 		// Here we layout the cell.
 		layout(
 			4,
-			|-4-menuItemView-4-|,
+			|-4-configureDeviceView-4-|,
 			>=4
 		)
 
@@ -33,4 +33,3 @@ class MenuViewCell: UICollectionViewCell {
 		backgroundColor = UIColor.backgroundColor
 	}
 }
-

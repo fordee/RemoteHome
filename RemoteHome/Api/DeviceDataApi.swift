@@ -56,6 +56,7 @@ public struct DeviceData: Decodable {
 	let on: Bool
 	let fan_mode: HvacFanMode
 	let vanne_mode: HvacVanneMode
+	let device_name: String
 
 	var temperatureDouble: Double {
 		return Double(temperature)! // This should always work
@@ -132,16 +133,33 @@ final public class DeviceDataApi {
 	// MARK: Private variables
 	private var service: DeviceService?
 
+	public func setDeviceName(of deviceid: String, with deviceName: String) {
+		let parameters: Parameters = [
+			"deviceid" : deviceid,
+			"device_name" : deviceName
+		]
+
+		guard let service = service else { fatalError("DeviceService is unavailable") }
+
+		firstly {
+			service.device(parameters: parameters)
+		}.done { returnString in
+			print(returnString)
+		}.catch { error in
+			print("Error: \(error.localizedDescription)")
+		}
+	}
+
 	// MARK: Public functions
 	// Send Command to aircon service
 	public func command(to device: IoTDevice) {
-		let parameters: [String: String] = [
+		let parameters: Parameters = [
 			"command" : String(device.hvacCommand.on),
 			"mode" : String(device.hvacCommand.mode.rawValue),
 			"fanMode" : String(device.hvacCommand.fanMode.rawValue),
 			"vanneMode" : String(device.hvacCommand.vanneMode.rawValue),
 			"temperature" : String(Int(device.hvacCommand.temperature)),
-			"device" : device.deviceName
+			"device" : device.deviceId
 		]
 
 		guard let service = service else { fatalError("DeviceService is unavailable") }
@@ -195,7 +213,6 @@ final public class DeviceDataApi {
 	}
 
 	public func fetchAccessId() -> Promise<String> {
-
 		// TODO: Sort out this flow
 		return Promise { seal in
 			user = AppDelegate.defaultUserPool().currentUser()
@@ -212,14 +229,13 @@ final public class DeviceDataApi {
 				}
 			}
 		}
-
 	}
 
 	// MARK: Private functions
 	private func getDeviceList(deviceDataResponse: DeviceDataResponse) -> [IoTDevice] {
 		var iotDevces: [IoTDevice] = []
 		for device in deviceDataResponse.devices {
-			let iotDevice = IoTDevice(deviceName: device.deviceid)
+			let iotDevice = IoTDevice(deviceId: device.deviceid)
 			setDeviceAttributes(for: iotDevice, with: device.data)
 			iotDevces.append(iotDevice)
 		}
@@ -230,6 +246,7 @@ final public class DeviceDataApi {
 		device.temperature = with.temperature
 		device.humidity = with.humidity
 		device.dateTime = with.date_time
+		device.deviceName = with.device_name
 		device.hvacCommand.mode = with.mode
 		device.hvacCommand.on = with.on
 		device.hvacCommand.temperature = with.set_temperature

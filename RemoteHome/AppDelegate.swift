@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var loginViewController: LoginViewController?
 //	var resetPasswordViewController: ResetPasswordViewController?
-//	var multiFactorAuthenticationController: MultiFactorAuthenticationController?
+
 	var navigationController: UINavigationController?
 
 	var window: UIWindow?
@@ -124,35 +124,21 @@ extension AppDelegate: AWSCognitoIdentityInteractiveAuthenticationDelegate {
 
 		return self.loginViewController!
 	}
-//
+
 //	func startNewPasswordRequired() -> AWSCognitoIdentityNewPasswordRequired {
-//		if (self.resetPasswordViewController == nil) {
-//			self.resetPasswordViewController = self.storyboard?.instantiateViewController(withIdentifier: "ResetPasswordController") as? ResetPasswordViewController
+//		if (forgotPasswordViewController == nil) {
+//			forgotPasswordViewController = ForgotPasswordViewController()
 //		}
 //
 //		DispatchQueue.main.async {
-//			if(self.resetPasswordViewController!.isViewLoaded || self.resetPasswordViewController!.view.window == nil) {
-//				self.navigationController?.present(self.resetPasswordViewController!, animated: true, completion: nil)
+//			if(self.forgotPasswordViewController!.isViewLoaded || self.forgotPasswordViewController!.view.window == nil) {
+//				self.navigationController?.present(self.forgotPasswordViewController!, animated: true, completion: nil)
 //			}
 //		}
 //
-//		return self.resetPasswordViewController!
+//		return self.forgotPasswordViewController!
 //	}
-//
-//	func startMultiFactorAuthentication() -> AWSCognitoIdentityMultiFactorAuthentication {
-//		if (self.multiFactorAuthenticationController == nil) {
-//			self.multiFactorAuthenticationController = self.storyboard?.instantiateViewController(withIdentifier: "MultiFactorAuthenticationController") as? MultiFactorAuthenticationController
-//		}
-//
-//		DispatchQueue.main.async {
-//			if(self.multiFactorAuthenticationController!.isViewLoaded || self.multiFactorAuthenticationController!.view.window == nil) {
-//				self.navigationController?.present(self.multiFactorAuthenticationController!, animated: true, completion: nil)
-//			}
-//		}
-//
-//		return self.multiFactorAuthenticationController!
-//	}
-//
+
 }
 
 
