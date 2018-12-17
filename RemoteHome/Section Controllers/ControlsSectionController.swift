@@ -46,7 +46,7 @@ class ControlsSectionController: ListSectionController {
 
 	override func didUpdate(to object: Any) {
 		precondition(object is IoTDevice)
-		iotDevice = (object as? IoTDevice)!
+		iotDevice = (object as! IoTDevice)
 	}
 
 	override func cellForItem(at index: Int) -> UICollectionViewCell {
@@ -116,6 +116,8 @@ class ControlsSectionController: ListSectionController {
 
 	override func didSelectItem(at index: Int) {
 		//print("index: \(index)")
+		guard let type = iotDevice?.deviceType, DeviceType(rawValue: type) == .heatPump else { return } // Only expand if you are a heat pump
+		
 		if index == 0 {
 			expanded = !expanded
 			collectionContext?.performBatch(animated: true, updates: { batchContext in

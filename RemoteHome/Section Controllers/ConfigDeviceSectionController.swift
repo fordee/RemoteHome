@@ -22,7 +22,7 @@ class ConfigDeviceSectionController: ListSectionController {
 
 	override func didUpdate(to object: Any) {
 		precondition(object is IoTDevice)
-		iotDevice = (object as? IoTDevice)!
+		iotDevice = (object as! IoTDevice)
 	}
 
 	override func cellForItem(at index: Int) -> UICollectionViewCell {
@@ -36,33 +36,8 @@ class ConfigDeviceSectionController: ListSectionController {
 	override func sizeForItem(at index: Int) -> CGSize {
 		guard let context = collectionContext else { return .zero}
 		let width = context.containerSize.width
-		return CGSize(width: width, height: 150)
+		return CGSize(width: width, height: 220)
 	}
-
-//	override func didSelectItem(at index: Int) {
-//		//print("index: \(index)")
-//		if index == 0 {
-//			expanded = !expanded
-//			collectionContext?.performBatch(animated: true, updates: { batchContext in
-//				batchContext.reload(self)
-//			})
-//			if let deviceid = iotDevice?.deviceName, expanded == true {
-//				// Send notification to collapse all other cells
-//				NotificationCenter.default.post(name: .collapseCells, object: nil, userInfo: ["deviceid" : deviceid])
-//			}
-//		}
-//	}
-
-//	@objc func collapseCells(_ notification: Notification) {
-//		// Notification to collapse this cell if it isn't the cell that sent it (deteremined by the deviceid).
-//		if let deviceid = notification.userInfo?["deviceid"] as? String, let thisDeviceid = iotDevice?.deviceName, deviceid != thisDeviceid {
-//			expanded = false
-//			collectionContext?.performBatch(animated: true, updates: { batchContext in
-//				batchContext.reload(self)
-//			})
-//		}
-//	}
-
 }
 
 extension ConfigDeviceSectionController: ControlsSectionControllerDelegate {

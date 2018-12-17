@@ -13,6 +13,8 @@ extension ConfigureDeviceView {
 	func render(with device: IoTDevice) {
 		deviceIdLabel.text = "Device ID: \(device.deviceId)"
 		deviceNameEditField.text = device.deviceName
+		deviceTypeButton.setTitle(device.deviceType, for: .normal)
+		isActiveSwitch.setOn(device.isActive, animated: true)
 	}
 
 }

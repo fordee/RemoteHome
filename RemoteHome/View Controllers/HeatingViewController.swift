@@ -31,13 +31,14 @@ class HeatingViewController: UIViewController {
 		adapter.collectionView = v.listView
 		adapter.dataSource = self
 		// Load data into ListKit view
-		iotDevices = DeviceDataApi.shared.devices
+		iotDevices = DeviceDataApi.shared.activeDevices
 		self.adapter.performUpdates(animated: true)
-		// And refresh data. It may be old.
+
+		// And refresh data as it may be old.
 		firstly {
 			DeviceDataApi.shared.fetchAccessId()
 		}.then { accessString in
-			DeviceDataApi.shared.refreshDeviceData()
+			DeviceDataApi.shared.refreshDeviceData().filterValues { $0.isActive }
 		}.done { devices in
 			self.iotDevices = devices
 			self.adapter.performUpdates(animated: true)

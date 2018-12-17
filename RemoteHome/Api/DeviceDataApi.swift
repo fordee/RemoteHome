@@ -57,6 +57,8 @@ public struct DeviceData: Decodable {
 	let fan_mode: HvacFanMode
 	let vanne_mode: HvacVanneMode
 	let device_name: String
+	let device_type: String
+	let is_active: String
 
 	var temperatureDouble: Double {
 		return Double(temperature)! // This should always work
@@ -129,14 +131,18 @@ final public class DeviceDataApi {
 		}
 	}
 	public var devices: [IoTDevice] = []
+	public var activeDevices: [IoTDevice] = []
 
 	// MARK: Private variables
 	private var service: DeviceService?
 
-	public func setDeviceName(of deviceid: String, with deviceName: String) {
+	public func setDeviceAttributes(of deviceid: String, deviceName: String, deviceType: String, isActive: Bool) {
+		let isActiveString = isActive ? "True" : "False"
 		let parameters: Parameters = [
 			"deviceid" : deviceid,
-			"device_name" : deviceName
+			"device_name" : deviceName,
+			"device_type" : deviceType,
+			"is_active" : isActiveString
 		]
 
 		guard let service = service else { fatalError("DeviceService is unavailable") }
@@ -178,13 +184,13 @@ final public class DeviceDataApi {
 		return Promise {seal in
 			guard let service = service else {
 				throw RHError.token("Token not available yet. Try again later.")
-				//return seal.reject(error)
 			}
 
 			firstly {
 				service.temperature()
 				}.done { deviceDataResponse in
 					self.devices = self.getDeviceList(deviceDataResponse: deviceDataResponse)
+					self.activeDevices = self.devices.filter {$0.isActive}
 					seal.fulfill(self.devices)
 				}.catch { error in
 					print("Error: \(error.localizedDescription)")
@@ -247,6 +253,8 @@ final public class DeviceDataApi {
 		device.humidity = with.humidity
 		device.dateTime = with.date_time
 		device.deviceName = with.device_name
+		device.deviceType = with.device_type
+		device.isActive = with.is_active == "True" ? true : false
 		device.hvacCommand.mode = with.mode
 		device.hvacCommand.on = with.on
 		device.hvacCommand.temperature = with.set_temperature

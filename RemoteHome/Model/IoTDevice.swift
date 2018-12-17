@@ -16,7 +16,8 @@ public class IoTDevice {
 	var humidity = ""
 	var dateTime = ""
 	var deviceName = ""
-
+	var deviceType = ""
+	var isActive = true
 
 	var hvacCommand = HvacCommand()
 
