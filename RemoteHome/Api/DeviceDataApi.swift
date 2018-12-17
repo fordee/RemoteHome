@@ -241,25 +241,10 @@ final public class DeviceDataApi {
 	private func getDeviceList(deviceDataResponse: DeviceDataResponse) -> [IoTDevice] {
 		var iotDevces: [IoTDevice] = []
 		for device in deviceDataResponse.devices {
-			let iotDevice = IoTDevice(deviceId: device.deviceid)
-			setDeviceAttributes(for: iotDevice, with: device.data)
+			let iotDevice = IoTDevice(deviceData: device.data)
 			iotDevces.append(iotDevice)
 		}
 		return iotDevces
-	}
-
-	private func setDeviceAttributes(for device: IoTDevice, with: DeviceData) {
-		device.temperature = with.temperature
-		device.humidity = with.humidity
-		device.dateTime = with.date_time
-		device.deviceName = with.device_name
-		device.deviceType = with.device_type
-		device.isActive = with.is_active == "True" ? true : false
-		device.hvacCommand.mode = with.mode
-		device.hvacCommand.on = with.on
-		device.hvacCommand.temperature = with.set_temperature
-		device.hvacCommand.fanMode = with.fan_mode
-		device.hvacCommand.vanneMode = with.vanne_mode
 	}
 
 }

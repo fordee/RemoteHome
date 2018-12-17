@@ -50,6 +50,22 @@ public class IoTDevice {
 		dateFormatter.timeZone = TimeZone(abbreviation: "GMT")//.current
 	}
 
+	public convenience init(deviceData: DeviceData) {
+		self.init(deviceId: deviceData.deviceid) // Need to init date formatter
+
+		self.temperature = deviceData.temperature
+		self.humidity = deviceData.humidity
+		self.dateTime = deviceData.date_time
+		self.deviceName = deviceData.device_name
+		self.deviceType = deviceData.device_type
+		self.isActive = deviceData.is_active == "True" ? true : false
+		self.hvacCommand.mode = deviceData.mode
+		self.hvacCommand.on = deviceData.on
+		self.hvacCommand.temperature = deviceData.set_temperature
+		self.hvacCommand.fanMode = deviceData.fan_mode
+		self.hvacCommand.vanneMode = deviceData.vanne_mode
+	}
+
 	// MARK: Equatable Protocol
 	static func == (lhs: IoTDevice, rhs: IoTDevice) -> Bool {
 		return lhs.deviceId == rhs.deviceId
