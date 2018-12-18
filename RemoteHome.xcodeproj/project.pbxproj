@@ -83,6 +83,7 @@
 		49FBC3AC21C58B45007A6542 /* ConfigureDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FBC3AB21C58B45007A6542 /* ConfigureDeviceView.swift */; };
 		49FBC3AE21C58E49007A6542 /* ConfigureDeviceView+IoTDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FBC3AD21C58E49007A6542 /* ConfigureDeviceView+IoTDevice.swift */; };
 		49FBC3B021C6B1CE007A6542 /* PickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FBC3AF21C6B1CE007A6542 /* PickerManager.swift */; };
+		49FBC3B221C95397007A6542 /* ConfigureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FBC3B121C95397007A6542 /* ConfigureView.swift */; };
 		9C6B5B57A8F433131B4C2671 /* Pods_RemoteHomeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57A26C8C8890D840D0593E10 /* Pods_RemoteHomeTests.framework */; };
 		ABF4FB7BE22B0E9CD875A3A8 /* Pods_RemoteHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404E48EDCF3E5AC223286D58 /* Pods_RemoteHome.framework */; };
 /* End PBXBuildFile section */
@@ -193,6 +194,7 @@
 		49FBC3AB21C58B45007A6542 /* ConfigureDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureDeviceView.swift; sourceTree = "<group>"; };
 		49FBC3AD21C58E49007A6542 /* ConfigureDeviceView+IoTDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConfigureDeviceView+IoTDevice.swift"; sourceTree = "<group>"; };
 		49FBC3AF21C6B1CE007A6542 /* PickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerManager.swift; sourceTree = "<group>"; };
+		49FBC3B121C95397007A6542 /* ConfigureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureView.swift; sourceTree = "<group>"; };
 		4E41540CA421A33659A4C077 /* Pods-RemoteHomeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RemoteHomeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RemoteHomeTests/Pods-RemoteHomeTests.release.xcconfig"; sourceTree = "<group>"; };
 		57A26C8C8890D840D0593E10 /* Pods_RemoteHomeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RemoteHomeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B58CF30467024604CA00B23 /* Pods-RemoteHome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RemoteHome.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RemoteHome/Pods-RemoteHome.debug.xcconfig"; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				497274D621C46A3900F17771 /* ForgotPasswordView.swift */,
 				49FBC3AB21C58B45007A6542 /* ConfigureDeviceView.swift */,
 				49FBC3AD21C58E49007A6542 /* ConfigureDeviceView+IoTDevice.swift */,
+				49FBC3B121C95397007A6542 /* ConfigureView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -654,6 +657,7 @@
 				49026A6A216FC0880088501A /* ControlsSectionController.swift in Sources */,
 				4910E84E2194E23A00E538B4 /* ConfigDeviceSectionController.swift in Sources */,
 				4941658621A8E12B0034328C /* VerifyView.swift in Sources */,
+				49FBC3B221C95397007A6542 /* ConfigureView.swift in Sources */,
 				49EF5F1121BC5C630021BAE3 /* SlideInAnimationController.swift in Sources */,
 				497274D521C469D900F17771 /* PopUpForgotPasswordView.swift in Sources */,
 				49B139032183A0BE00330E3D /* SetTemperatureView+IoTDevice.swift in Sources */,

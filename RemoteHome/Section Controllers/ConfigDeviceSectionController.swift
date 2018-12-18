@@ -11,6 +11,7 @@ import IGListKit
 class ConfigDeviceSectionController: ListSectionController {
 
 	var iotDevice: IoTDevice?
+	weak var delegate: ConfigureDevicesViewControllerDelegate?
 
 	override init() {
 		super.init()
@@ -28,6 +29,7 @@ class ConfigDeviceSectionController: ListSectionController {
 	override func cellForItem(at index: Int) -> UICollectionViewCell {
 
 		let cell = collectionContext!.dequeueReusableCell(of: ConfigureDeviceCell.self, for: self, at: index) as! ConfigureDeviceCell
+		cell.configureDeviceView.delegate = delegate
 		cell.configureDeviceView.device = iotDevice
 		cell.configureDeviceView.render(with: iotDevice!)
 		return cell
@@ -36,7 +38,7 @@ class ConfigDeviceSectionController: ListSectionController {
 	override func sizeForItem(at index: Int) -> CGSize {
 		guard let context = collectionContext else { return .zero}
 		let width = context.containerSize.width
-		return CGSize(width: width, height: 220)
+		return CGSize(width: width, height: 176)
 	}
 }
 

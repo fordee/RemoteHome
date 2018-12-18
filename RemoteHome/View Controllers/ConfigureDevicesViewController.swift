@@ -10,10 +10,15 @@ import UIKit
 import IGListKit
 import PromiseKit
 
+protocol ConfigureDevicesViewControllerDelegate: AnyObject {
+	func handleSelectDevice(_ values: [DeviceType])
+	func setDeviceAttributes(of deviceid: String, deviceName: String, deviceType: String, isActive: Bool)
+}
+
 class ConfigureDevicesViewController: UIViewController {
 
 	var iotDevices: [IoTDevice] = []
-	let v = ControlsView()
+	let v = ConfigureView()
 
 	lazy var adapter: ListAdapter = {
 		return ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 1)
@@ -26,7 +31,7 @@ class ConfigureDevicesViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		navigationItem.title = "Configure Devices"
-
+		
 		NotificationCenter.default.addObserver(self, selector: #selector(refreshDevices), name: .refreshDevices, object: nil)
 
 		// Setup IGListView Adapter
@@ -70,11 +75,30 @@ extension ConfigureDevicesViewController: ListAdapterDataSource {
 	}
 
 	func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-		return ConfigDeviceSectionController()
+		let cdsc = ConfigDeviceSectionController()
+		cdsc.delegate = self
+		return cdsc
 	}
 
 	func emptyView(for listAdapter: ListAdapter) -> UIView? {
 		return nil
 	}
+}
+
+extension ConfigureDevicesViewController: ConfigureDevicesViewControllerDelegate {
+	func handleSelectDevice(_ values: [DeviceType]) {
+		print("handleSelectDevice called")
+		
+	}
+
+	func setDeviceAttributes(of deviceid: String, deviceName: String, deviceType: String, isActive: Bool) {
+		print("setDeviceAttributes called")
+
+		DeviceDataApi.shared.setDeviceAttributes(of: deviceid, deviceName: deviceName, deviceType: deviceType, isActive: isActive)
+		// TODO: Add error handling
+
+	}
+
+	
 }
 

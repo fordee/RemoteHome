@@ -18,6 +18,8 @@ class ConfigureDeviceView: UIView {
 
 	var device: IoTDevice?
 
+	weak var delegate: ConfigureDevicesViewControllerDelegate?
+
 	let deviceIdLabel = UILabel()
 	let deviceNameLabel = UILabel()
 	let deviceNameEditField = UITextField()
@@ -25,10 +27,9 @@ class ConfigureDeviceView: UIView {
 	let isActiveLabel = UILabel()
 	let deviceTypeButton = UIButton()
 
-	let saveButton = UIButton()
-
 	convenience init() {
 		self.init(frame: CGRect.zero)
+		deviceNameEditField.delegate = self
 		render()
 	}
 
@@ -40,8 +41,7 @@ class ConfigureDeviceView: UIView {
 			deviceNameEditField.style(textFieldStyle),
 			isActiveSwitch.style(switchStyle),
 			isActiveLabel.style(labelStyle),
-			deviceTypeButton.style(buttonStyle),
-			saveButton.style(buttonStyle)
+			deviceTypeButton.style(buttonStyle)
 		)
 
 		// Here we layout the cell.
@@ -52,21 +52,18 @@ class ConfigureDeviceView: UIView {
 			|-deviceNameLabel-8-deviceNameEditField-|,
 			16,
 			|-isActiveSwitch-8-isActiveLabel-(>=8)-deviceTypeButton-|,
-			16,
-			|-saveButton-|,
-			8
+			16
 		)
 
 		// Configure visual elements
 		backgroundColor = UIColor.controlColor
 		deviceNameLabel.text = "Device Name"
 		isActiveLabel.text = "Active?"
-		//deviceTypeButton.setTitle("Heat Pump", for: .normal)
+		isActiveSwitch.addTarget(self, action: #selector(isActiveSwitchPressed(_:)), for: .allTouchEvents)
+
 		deviceTypeButton.addTarget(self, action: #selector(deviceTypeButtonPressed(_:)), for: .touchUpInside)
 		deviceTypeButton.width(200)
-		//deviceTypeButton.titleLabel?.width(160)
-		saveButton.setTitle("Save", for: .normal)
-		saveButton.addTarget(self, action: #selector(saveButtonPressed(_:)), for: .touchUpInside)
+
 		layer.cornerRadius = 8
 	}
 
@@ -101,22 +98,37 @@ class ConfigureDeviceView: UIView {
 		sw.onTintColor = UIColor.accentColor
 	}
 
-	@objc func saveButtonPressed(_ sender: Any) {
-		print("Save Button Pressed. \(device?.deviceId ?? ""): \(deviceNameEditField.text ?? "")")
+	@objc func isActiveSwitchPressed(_ sender: Any) {
+		print("Is Active Button Pressed.")
 		guard let device = device else { return }
-
-		DeviceDataApi.shared.setDeviceAttributes(of: device.deviceId, deviceName: deviceNameEditField.text!, deviceType: (deviceTypeButton.titleLabel!.text!), isActive: isActiveSwitch.isOn)
+		setDeviceAttributes(device: device)
 	}
 
 	@objc func deviceTypeButtonPressed(_ sender: Any) {
 		print("Device Type Button Pressed.")
-		//guard let device = device else { return }
 		let values = DeviceType.allCases
 		DPPickerManager.shared.showPicker(title: "Select a Device Type", selected: values[0].rawValue, strings: values.map {$0.rawValue}) { value, index, cancel in
 			if !cancel {
 				guard let value = value else { return }
 				self.deviceTypeButton.setTitle(value, for: .normal)
+
+				guard let device = self.device else { return }
+				self.setDeviceAttributes(device: device)
 			}
 		}
+	}
+
+	func setDeviceAttributes(device: IoTDevice) {
+		if let deviceName = deviceNameEditField.text, let deviceType = deviceTypeButton.titleLabel?.text {
+			delegate?.setDeviceAttributes(of: device.deviceId, deviceName: deviceName, deviceType: deviceType, isActive: isActiveSwitch.isOn)
+		}
+	}
+}
+
+extension ConfigureDeviceView: UITextFieldDelegate {
+	func textFieldDidEndEditing(_ textField: UITextField,	reason: UITextField.DidEndEditingReason) {
+		print("Did end editing. Reason: \(reason)")
+		guard let device = device else { return }
+		setDeviceAttributes(device: device)
 	}
 }
