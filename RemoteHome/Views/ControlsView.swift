@@ -16,7 +16,6 @@ class ControlsView: UIView {
 
 	convenience init() {
 		self.init(frame: CGRect.zero)
-		listView.contentInset.bottom = 300 // To allow for keyboard
 		render()
 	}
 
