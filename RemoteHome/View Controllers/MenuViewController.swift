@@ -15,12 +15,12 @@ class MenuViewController: UIViewController {
 
 	//let tempDataApi = TempDataApi.shared
 	var menuItems: [MenuItem] = [MenuItem(menuName: "Dashboard", iconName: "HeatIcon"),		// 0
-		MenuItem(menuName: "Rooms", iconName: "HeatIcon"),				// 1
-		MenuItem(menuName: "Scenes", iconName: "HeatIcon"),			// 2
-		MenuItem(menuName: "Heating", iconName: "HeatIcon"),			// 3
-		MenuItem(menuName: "Lighting", iconName: "HeatIcon"),		// 4
-		MenuItem(menuName: "Settings", iconName: "HeatIcon"),		// 5
-		MenuItem(menuName: "Logout", iconName: "HeatIcon")]			// 6
+		MenuItem(menuName: "Heating", iconName: "HeatIcon"),			// 1
+		MenuItem(menuName: "Rooms", iconName: "HeatIcon"),				// 2
+		MenuItem(menuName: "Automation", iconName: "HeatIcon"),		// 3
+		//MenuItem(menuName: "Lighting", iconName: "HeatIcon"),		// 4
+		MenuItem(menuName: "Settings", iconName: "HeatIcon"),			// 4
+		MenuItem(menuName: "Logout", iconName: "HeatIcon")]				// 5
 
 	let v = MenuView()
 
@@ -56,9 +56,6 @@ class MenuViewController: UIViewController {
 			self.showErrorDialog(reason)
 		}
 	}
-
-	
-
 }
 
 // MARK: List Adapter Data Source
@@ -80,13 +77,13 @@ extension MenuViewController: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		print("Did Select Item At: \(indexPath.section)")
 		switch indexPath.section {
-		case 3:
+		case 1:
 			let vc = HeatingViewController()
 			navigationController?.pushViewController(vc, animated: true)
-		case 5:
+		case 4:
 			let vc = SettingsMenuViewController()
 			navigationController?.pushViewController(vc, animated: true)
-		case 6:
+		case 5:
 			DeviceDataApi.shared.user!.signOut() // User should never be nil. Crash if this is the case.
 			firstly {
 				DeviceDataApi.shared.fetchAccessId()

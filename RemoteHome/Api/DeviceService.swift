@@ -22,7 +22,7 @@ public class DeviceService: RestClient {
 		return request(.aircon, parameters: parameters)
 	}
 
-	public func device(parameters: Parameters) -> Promise<HvacCommandResponse> {
+	public func device(parameters: Parameters) -> Promise<DeviceAttributesReturn> {
 		return request(.device, parameters: parameters)
 	}
 }

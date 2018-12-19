@@ -11,7 +11,6 @@ import IGListKit
 import PromiseKit
 
 protocol ConfigureDevicesViewControllerDelegate: AnyObject {
-	func handleSelectDevice(_ values: [DeviceType])
 	func setDeviceAttributes(of deviceid: String, deviceName: String, deviceType: String, isActive: Bool)
 }
 
@@ -86,19 +85,17 @@ extension ConfigureDevicesViewController: ListAdapterDataSource {
 }
 
 extension ConfigureDevicesViewController: ConfigureDevicesViewControllerDelegate {
-	func handleSelectDevice(_ values: [DeviceType]) {
-		print("handleSelectDevice called")
-		
-	}
-
 	func setDeviceAttributes(of deviceid: String, deviceName: String, deviceType: String, isActive: Bool) {
 		print("setDeviceAttributes called")
 
-		DeviceDataApi.shared.setDeviceAttributes(of: deviceid, deviceName: deviceName, deviceType: deviceType, isActive: isActive)
-		// TODO: Add error handling
-
+		firstly {
+			DeviceDataApi.shared.setDeviceAttributes(of: deviceid, deviceName: deviceName, deviceType: deviceType, isActive: isActive)
+		}.catch { error in
+			let reason = error.getReason()
+			print(reason)
+			self.showErrorDialog(reason)
+		}
 	}
-
 	
 }
 

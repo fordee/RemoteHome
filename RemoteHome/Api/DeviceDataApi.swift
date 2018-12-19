@@ -136,7 +136,7 @@ final public class DeviceDataApi {
 	// MARK: Private variables
 	private var service: DeviceService?
 
-	public func setDeviceAttributes(of deviceid: String, deviceName: String, deviceType: String, isActive: Bool) {
+	public func setDeviceAttributes(of deviceid: String, deviceName: String, deviceType: String, isActive: Bool) -> Promise<DeviceAttributesReturn> {
 		let isActiveString = isActive ? "True" : "False"
 		let parameters: Parameters = [
 			"deviceid" : deviceid,
@@ -147,12 +147,16 @@ final public class DeviceDataApi {
 
 		guard let service = service else { fatalError("DeviceService is unavailable") }
 
-		firstly {
-			service.device(parameters: parameters)
-		}.done { returnString in
-			print(returnString)
-		}.catch { error in
-			print("Error: \(error.localizedDescription)")
+		return Promise { seal in
+			firstly {
+				service.device(parameters: parameters)
+			}.done { deviceAttributesReturn in
+				print(deviceAttributesReturn)
+				seal.fulfill(deviceAttributesReturn)
+			}.catch { error in
+				print("Error: \(error.localizedDescription)")
+				seal.reject(error)
+			}
 		}
 	}
 
