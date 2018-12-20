@@ -88,7 +88,7 @@ class FanView: UIView {
 		guard let device = device, let hvacFanMode = HvacFanMode(rawValue: buttonIndex) else {return}
 		device.hvacCommand.fanMode = hvacFanMode
 		firstly {
-			DeviceDataApi.shared.command(to: device)
+			DeviceDataApi.shared.sendCommand(to: device)
 		}.done { result in
 				print("Success: \(result)")
 		}.catch { error in

@@ -59,13 +59,7 @@ class AirflowDirectionView: UIView {
 
 		guard let device = device, let hvacVanneMode = HvacVanneMode(rawValue: airflowButtonCounter) else {return}
 		device.hvacCommand.vanneMode = hvacVanneMode
-		firstly {
-			DeviceDataApi.shared.command(to: device)
-		}.done { result in
-			print("Success: \(result)")
-		}.catch { error in
-			self.delegate?.handleError(error)
-		}
+		sendCommand(to: device)
 	}
 
 	@objc func autoButtonPressed(_ sender: Any) {
@@ -75,13 +69,7 @@ class AirflowDirectionView: UIView {
 
 		guard let device = device else {return}
 		device.hvacCommand.vanneMode = .vanneAuto
-		firstly {
-			DeviceDataApi.shared.command(to: device)
-		}.done { result in
-				print("Success: \(result)")
-		}.catch { error in
-				self.delegate?.handleError(error)
-		}
+		sendCommand(to: device)
 	}
 
 	@objc func swingButtonPressed(_ sender: Any) {
@@ -91,19 +79,21 @@ class AirflowDirectionView: UIView {
 
 		guard let device = device else {return}
 		device.hvacCommand.vanneMode = .vanneAutoMove
-		firstly {
-			DeviceDataApi.shared.command(to: device)
-		}.done { result in
-				print("Success: \(result)")
-		}.catch { error in
-				self.delegate?.handleError(error)
-		}
+		sendCommand(to: device)
 	}
 
 //	func setAutoButton(on: Bool) {
 //		setImage(on: autoButton, imageName: on ? "AutoButton" : "AutoButtonUnhighlighted")
 //	}
-
+	private func sendCommand(to device: IoTDevice) {
+		firstly {
+			DeviceDataApi.shared.sendCommand(to: device)
+		}.done { result in
+			print("Success: \(result)")
+		}.catch { error in
+			self.delegate?.handleError(error)
+		}
+	}
 
 	func setAllButtonsOff() {
 		setImage(on: autoButton, imageName: "AutoButtonUnhighlighted")

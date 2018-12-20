@@ -25,11 +25,9 @@ class AirflowView: UIView {
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		//airflowDirectionView.delegate = self
 
 		airflowLabel.text = "Airflow Direction"
-		// TODO: add target for swing button
-
+		
 		sv(
 			airflowLabel.style(labelStyle),
 			airflowDirectionView

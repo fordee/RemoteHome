@@ -162,7 +162,7 @@ final public class DeviceDataApi {
 	}
 
 	// Send Command to aircon service
-	public func command(to device: IoTDevice) -> Promise<String> {
+	public func sendCommand(to device: IoTDevice) -> Promise<String> {
 		let parameters: Parameters = [
 			"command" : String(device.hvacCommand.on),
 			"mode" : String(device.hvacCommand.mode.rawValue),

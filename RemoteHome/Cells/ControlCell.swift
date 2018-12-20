@@ -31,9 +31,6 @@ class ControlCell: UICollectionViewCell {
 		super.init(frame: frame)
 		setControlImages()
 		setControlTargets()
-		//unhighlightAllModeButtons()
-		//setImage(on: autoControl, imageName: "AutoButton") // TODO: Get state from the Device Shadow
-		//setState()
 
 		sv(
 			onControl.style(controlButtonStyle),
@@ -94,7 +91,7 @@ class ControlCell: UICollectionViewCell {
 		setImage(on: onControl, imageName: device.hvacCommand.on ? "OnButton" : "OnButtonUnhighlighted")
 		print("device.on: \(device.hvacCommand.on)")
 		delegate?.refreshListController()
-		sendCommand(device: device)
+		sendCommand(to: device)
 		// Provide some haptic feedback
 		AudioServicesPlaySystemSound(1519) // Actuate `Peek` feedback (weak boom)
 		//AudioServicesPlaySystemSound(1520)
@@ -105,7 +102,7 @@ class ControlCell: UICollectionViewCell {
 		unhighlightAllModeButtons()
 		setImage(on: autoControl, imageName: "AutoButton")
 		device.hvacCommand.mode = .hvacAuto
-		sendCommand(device: device)
+		sendCommand(to: device)
 	}
 
 	@objc func setHeatButton(_ sender: Any) {
@@ -113,7 +110,7 @@ class ControlCell: UICollectionViewCell {
 		unhighlightAllModeButtons()
 		setImage(on: heatControl, imageName: "HeatButton")
 		device.hvacCommand.mode = .hvacHot
-		sendCommand(device: device)
+		sendCommand(to: device)
 	}
 
 	@objc func setDryButton(_ sender: Any) {
@@ -121,14 +118,14 @@ class ControlCell: UICollectionViewCell {
 		unhighlightAllModeButtons()
 		setImage(on: dryControl, imageName: "DryButton")
 		device.hvacCommand.mode = .hvacDry
-		sendCommand(device: device)
+		sendCommand(to: device)
 	}
 	@objc func setFanButton(_ sender: Any) {
 		guard let device = device else {return}
 		unhighlightAllModeButtons()
 		setImage(on: fanControl, imageName: "FanButton")
 		device.hvacCommand.mode = .hvacFan
-		sendCommand(device: device)
+		sendCommand(to: device)
 	}
 
 	@objc func setCoolButton(_ sender: Any) {
@@ -136,12 +133,12 @@ class ControlCell: UICollectionViewCell {
 		unhighlightAllModeButtons()
 		setImage(on: coolControl, imageName: "CoolButton")
 		device.hvacCommand.mode = .hvacCold
-		sendCommand(device: device)
+		sendCommand(to: device)
 	}
 
-	private func sendCommand(device: IoTDevice) {
+	private func sendCommand(to device: IoTDevice) {
 		firstly {
-			DeviceDataApi.shared.command(to: device)
+			DeviceDataApi.shared.sendCommand(to: device)
 		}.done { result in
 			print("Success: \(result)")
 		}.catch { error in

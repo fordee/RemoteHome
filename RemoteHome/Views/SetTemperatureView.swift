@@ -72,7 +72,7 @@ class SetTemperatureView: UIView {
 		print("slider editing did end.")
 		guard let device = device else {return}
 		firstly {
-			DeviceDataApi.shared.command(to: device)
+			DeviceDataApi.shared.sendCommand(to: device)
 		}.done { result in
 			print("Success: \(result)")
 		}.catch { error in

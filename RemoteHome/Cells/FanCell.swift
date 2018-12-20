@@ -75,7 +75,7 @@ class FanCell: UICollectionViewCell {
 		guard let device = device else {return}
 		device.hvacCommand.fanMode = .fanSpeedAuto
 		firstly {
-			DeviceDataApi.shared.command(to: device)
+			DeviceDataApi.shared.sendCommand(to: device)
 		}.done { result in
 				print("Success: \(result)")
 		}.catch { error in
