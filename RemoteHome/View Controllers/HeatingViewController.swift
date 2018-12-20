@@ -27,6 +27,7 @@ class HeatingViewController: UIViewController {
 		super.viewDidLoad()
 		navigationItem.title = "Heating"
 		NotificationCenter.default.addObserver(self, selector: #selector(refreshDevices), name: .refreshDevices, object: nil)
+		
 		// Setup IGListView Adapter
 		adapter.collectionView = v.listView
 		adapter.dataSource = self
@@ -73,11 +74,25 @@ extension HeatingViewController: ListAdapterDataSource {
 	}
 
 	func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-		return ControlsSectionController()
+		let csc = ControlsSectionController()
+		csc.delegate = self
+		return csc
 	}
 
 	func emptyView(for listAdapter: ListAdapter) -> UIView? {
 		return nil
+	}
+}
+
+// MARK: HeatingViewControllerDelegate
+protocol HeatingViewControllerDelegate: AnyObject {
+	func handleError(_ error: Error)
+}
+
+extension HeatingViewController: HeatingViewControllerDelegate {
+	func handleError(_ error: Error) {
+		let reason = error.getReason()
+		self.showErrorDialog(reason)
 	}
 }
 

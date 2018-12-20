@@ -8,7 +8,7 @@
 
 import UIKit
 import Stevia
-
+import PromiseKit
 
 class AirflowDirectionView: UIView {
 
@@ -19,7 +19,7 @@ class AirflowDirectionView: UIView {
 	var device: IoTDevice?
 	var airflowButtonCounter = 0
 
-	weak var delegate: AirflowCellDelegate?
+	weak var delegate: HeatingViewControllerDelegate?
 
 	convenience init() {
 		self.init(frame: CGRect.zero)
@@ -51,7 +51,6 @@ class AirflowDirectionView: UIView {
 	}
 
 	@objc func airflowDirectionButtonPressed(_ sender: Any) {
-		//delegate?.setFanMode(HvacFanMode(rawValue: buttonIndex)!)
 		print("Airflow Button Button pressed.")
 		setAllButtonsOff()
 		airflowButtonCounter += 1
@@ -60,7 +59,13 @@ class AirflowDirectionView: UIView {
 
 		guard let device = device, let hvacVanneMode = HvacVanneMode(rawValue: airflowButtonCounter) else {return}
 		device.hvacCommand.vanneMode = hvacVanneMode
-		DeviceDataApi.shared.command(to: device)
+		firstly {
+			DeviceDataApi.shared.command(to: device)
+		}.done { result in
+			print("Success: \(result)")
+		}.catch { error in
+			self.delegate?.handleError(error)
+		}
 	}
 
 	@objc func autoButtonPressed(_ sender: Any) {
@@ -70,7 +75,13 @@ class AirflowDirectionView: UIView {
 
 		guard let device = device else {return}
 		device.hvacCommand.vanneMode = .vanneAuto
-		DeviceDataApi.shared.command(to: device)
+		firstly {
+			DeviceDataApi.shared.command(to: device)
+		}.done { result in
+				print("Success: \(result)")
+		}.catch { error in
+				self.delegate?.handleError(error)
+		}
 	}
 
 	@objc func swingButtonPressed(_ sender: Any) {
@@ -80,7 +91,13 @@ class AirflowDirectionView: UIView {
 
 		guard let device = device else {return}
 		device.hvacCommand.vanneMode = .vanneAutoMove
-		DeviceDataApi.shared.command(to: device)
+		firstly {
+			DeviceDataApi.shared.command(to: device)
+		}.done { result in
+				print("Success: \(result)")
+		}.catch { error in
+				self.delegate?.handleError(error)
+		}
 	}
 
 //	func setAutoButton(on: Bool) {

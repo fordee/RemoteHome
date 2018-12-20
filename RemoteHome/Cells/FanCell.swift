@@ -8,6 +8,7 @@
 
 import UIKit
 import Stevia
+import PromiseKit
 
 protocol FanCellDelegate: class {
 	func setFanMode(_ fanMode: HvacFanMode)
@@ -23,6 +24,8 @@ class FanCell: UICollectionViewCell {
 			fanView.device = device
 		}
 	}
+
+	weak var delegate: HeatingViewControllerDelegate?
 
 	required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder)}
 
@@ -71,7 +74,13 @@ class FanCell: UICollectionViewCell {
 		setControlImages(on: true)
 		guard let device = device else {return}
 		device.hvacCommand.fanMode = .fanSpeedAuto
-		DeviceDataApi.shared.command(to: device)
+		firstly {
+			DeviceDataApi.shared.command(to: device)
+		}.done { result in
+				print("Success: \(result)")
+		}.catch { error in
+				self.delegate?.handleError(error)
+		}
 	}
 }
 

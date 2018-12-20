@@ -8,7 +8,7 @@
 
 import UIKit
 import Stevia
-
+import PromiseKit
 
 class FanView: UIView {
 
@@ -17,6 +17,7 @@ class FanView: UIView {
 	var device: IoTDevice?
 
 	weak var delegate: FanCellDelegate?
+	weak var heatingDelegate: HeatingViewControllerDelegate?
 
 	convenience init() {
 		self.init(frame: CGRect.zero)
@@ -86,7 +87,13 @@ class FanView: UIView {
 		
 		guard let device = device, let hvacFanMode = HvacFanMode(rawValue: buttonIndex) else {return}
 		device.hvacCommand.fanMode = hvacFanMode
-		DeviceDataApi.shared.command(to: device)
+		firstly {
+			DeviceDataApi.shared.command(to: device)
+		}.done { result in
+				print("Success: \(result)")
+		}.catch { error in
+				self.heatingDelegate?.handleError(error)
+		}
 	}
 
 	private func setImage(on button: UIButton, imageName: String) {

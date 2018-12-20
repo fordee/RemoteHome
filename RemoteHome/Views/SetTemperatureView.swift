@@ -8,7 +8,7 @@
 
 import UIKit
 import Stevia
-
+import PromiseKit
 
 class SetTemperatureView: UIView {
 
@@ -16,7 +16,7 @@ class SetTemperatureView: UIView {
 	let setTemperatureSlider = UISlider()
 	let setTemperatureDegrees = UILabel()
 
-	//let api = TempDataApi.shared
+	weak var delegate: HeatingViewControllerDelegate?
 
 	var device: IoTDevice?
 	
@@ -71,7 +71,13 @@ class SetTemperatureView: UIView {
 	@objc func sliderFinishedEditing(_ slider: UISlider) {
 		print("slider editing did end.")
 		guard let device = device else {return}
-		DeviceDataApi.shared.command(to: device)
+		firstly {
+			DeviceDataApi.shared.command(to: device)
+		}.done { result in
+			print("Success: \(result)")
+		}.catch { error in
+			self.delegate?.handleError(error)
+		}
 	}
 
 }

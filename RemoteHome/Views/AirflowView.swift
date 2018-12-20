@@ -10,10 +10,6 @@
 import UIKit
 import Stevia
 
-protocol AirflowCellDelegate: class {
-	func setAirflowMode(_ airflowMode: HvacVanneMode)
-}
-
 class AirflowView: UIView {
 
 	let airflowLabel = UILabel()
@@ -29,7 +25,7 @@ class AirflowView: UIView {
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		airflowDirectionView.delegate = self
+		//airflowDirectionView.delegate = self
 
 		airflowLabel.text = "Airflow Direction"
 		// TODO: add target for swing button
@@ -73,9 +69,4 @@ class AirflowView: UIView {
 	}
 }
 
-extension AirflowView: AirflowCellDelegate {
-	func setAirflowMode(_ airflowMode: HvacVanneMode) {
-
-	}
-}
 

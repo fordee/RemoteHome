@@ -26,6 +26,8 @@ class ControlsSectionController: ListSectionController {
 	var iotDevice: IoTDevice?
 	var expanded = false
 
+	weak var delegate: HeatingViewControllerDelegate?
+
 	override init() {
 		super.init()
 		NotificationCenter.default.addObserver(self, selector: #selector(collapseCells), name: .collapseCells, object: nil)
@@ -76,17 +78,21 @@ class ControlsSectionController: ListSectionController {
 			cell.device = iotDevice
 			cell.roomTemperatureView.render(with: iotDevice)
 			cell.roomTemperatureView.setTemperatureView.render(with: iotDevice)
+			cell.roomTemperatureView.setTemperatureView.delegate = delegate
 		} else if let cell = cell as? HeaderCell {
 			cell.headerView.render(with: iotDevice)
 		} else if let cell = cell as? ControlCell {
 			cell.device = iotDevice
 			cell.delegate = self
+			cell.heatingDelegate = delegate
 			cell.render(with: iotDevice)
 		} else if let cell = cell as? FanCell {
 			cell.device = iotDevice
+			cell.delegate = delegate
 			cell.render(with: iotDevice)
 		} else if let cell = cell as? AirflowCell {
 			cell.device = iotDevice
+			cell.airflowView.airflowDirectionView.delegate = delegate
 			cell.airflowView.airflowDirectionView.render(with: iotDevice)
 		}
 		return cell

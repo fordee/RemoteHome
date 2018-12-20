@@ -136,6 +136,7 @@ final public class DeviceDataApi {
 	// MARK: Private variables
 	private var service: DeviceService?
 
+	// MARK: Public methods
 	public func setDeviceAttributes(of deviceid: String, deviceName: String, deviceType: String, isActive: Bool) -> Promise<DeviceAttributesReturn> {
 		let isActiveString = isActive ? "True" : "False"
 		let parameters: Parameters = [
@@ -160,9 +161,8 @@ final public class DeviceDataApi {
 		}
 	}
 
-	// MARK: Public functions
 	// Send Command to aircon service
-	public func command(to device: IoTDevice) {
+	public func command(to device: IoTDevice) -> Promise<String> {
 		let parameters: Parameters = [
 			"command" : String(device.hvacCommand.on),
 			"mode" : String(device.hvacCommand.mode.rawValue),
@@ -172,14 +172,19 @@ final public class DeviceDataApi {
 			"device" : device.deviceId
 		]
 
-		guard let service = service else { fatalError("DeviceService is unavailable") }
+		return Promise { seal in
+
+			guard let service = service else { fatalError("DeviceService is unavailable") }
 		
-		firstly {
-			service.aircon(parameters: parameters)
-			}.done { returnString in
-				print(returnString)
+			firstly {
+				service.aircon(parameters: parameters)
+			}.done { hvacCommandResponse in
+				print(hvacCommandResponse)
+				seal.fulfill(hvacCommandResponse.result)
 			}.catch { error in
 				print("Error: \(error.localizedDescription)")
+				seal.reject(error)
+			}
 		}
 	}
 
