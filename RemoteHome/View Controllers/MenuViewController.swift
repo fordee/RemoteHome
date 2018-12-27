@@ -80,6 +80,9 @@ extension MenuViewController: UICollectionViewDelegate {
 		case 1:
 			let vc = HeatingViewController()
 			navigationController?.pushViewController(vc, animated: true)
+		case 2:
+			let vc = RoomsViewController()
+			navigationController?.pushViewController(vc, animated: true)
 		case 4:
 			let vc = SettingsMenuViewController()
 			navigationController?.pushViewController(vc, animated: true)

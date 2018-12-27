@@ -87,8 +87,9 @@ extension ConfigureDevicesViewController: ListAdapterDataSource {
 extension ConfigureDevicesViewController: ConfigureDevicesViewControllerDelegate {
 	func setDeviceAttributes(of deviceid: String, deviceName: String, deviceType: String, isActive: Bool) {
 		print("setDeviceAttributes called")
-
 		firstly {
+			DeviceDataApi.shared.fetchAccessId()
+		}.then { accessString in
 			DeviceDataApi.shared.setDeviceAttributes(of: deviceid, deviceName: deviceName, deviceType: deviceType, isActive: isActive)
 		}.catch { error in
 			let reason = error.getReason()

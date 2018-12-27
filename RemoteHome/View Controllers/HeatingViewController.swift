@@ -55,7 +55,7 @@ class HeatingViewController: UIViewController {
 		firstly {
 			DeviceDataApi.shared.fetchAccessId()
 		}.then { accessString in
-			DeviceDataApi.shared.refreshDeviceData()
+			DeviceDataApi.shared.refreshDeviceData().filterValues { $0.isActive }
 		}.done { devices in
 			self.iotDevices = devices
 			self.adapter.reloadData(completion: nil)

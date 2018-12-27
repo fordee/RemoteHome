@@ -66,9 +66,11 @@
 		49C808A2215EF74300796714 /* RemoteHomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C808A1215EF74300796714 /* RemoteHomeTests.swift */; };
 		49C808BA215EF8E900796714 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C808B9215EF8E900796714 /* GradientView.swift */; };
 		49C808C3215F352800796714 /* DeviceDataApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C808C2215F352800796714 /* DeviceDataApi.swift */; };
+		49DCCA3F21D5641B00A51C58 /* RoomCell+Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DCCA3E21D5641B00A51C58 /* RoomCell+Room.swift */; };
 		49E76A5C21BEDBCB00D3574B /* PopUpSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E76A5B21BEDBCB00D3574B /* PopUpSignUpView.swift */; };
 		49E76A5E21C01CA100D3574B /* ValidationProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E76A5D21C01CA100D3574B /* ValidationProtocols.swift */; };
 		49E76A6021C0307600D3574B /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E76A5F21C0307600D3574B /* UIViewController+Utils.swift */; };
+		49E96A9021D56D8D00C4243C /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49E96A8F21D56C8100C4243C /* Roboto-Light.ttf */; };
 		49EF5F0221BAF7A60021BAE3 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F0121BAF7A60021BAE3 /* String+Utils.swift */; };
 		49EF5F0421BC40B50021BAE3 /* Error+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F0321BC40B50021BAE3 /* Error+Utils.swift */; };
 		49EF5F0621BC48490021BAE3 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F0521BC48490021BAE3 /* ErrorViewController.swift */; };
@@ -85,6 +87,11 @@
 		49FBC3B021C6B1CE007A6542 /* PickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FBC3AF21C6B1CE007A6542 /* PickerManager.swift */; };
 		49FBC3B221C95397007A6542 /* ConfigureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FBC3B121C95397007A6542 /* ConfigureView.swift */; };
 		49FBC3B421CAA63D007A6542 /* DeviceAttributesReturn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FBC3B321CAA63D007A6542 /* DeviceAttributesReturn.swift */; };
+		49FBC3B821D3EFAD007A6542 /* RoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FBC3B721D3EFAD007A6542 /* RoomsViewController.swift */; };
+		49FBC3BA21D3F228007A6542 /* RoomsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FBC3B921D3F228007A6542 /* RoomsView.swift */; };
+		49FBC3BC21D3F658007A6542 /* RoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FBC3BB21D3F658007A6542 /* RoomCell.swift */; };
+		49FBC3BE21D3FA58007A6542 /* RoomDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FBC3BD21D3FA58007A6542 /* RoomDataSource.swift */; };
+		49FBC3C021D3FA8B007A6542 /* RoomData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FBC3BF21D3FA8B007A6542 /* RoomData.swift */; };
 		9C6B5B57A8F433131B4C2671 /* Pods_RemoteHomeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57A26C8C8890D840D0593E10 /* Pods_RemoteHomeTests.framework */; };
 		ABF4FB7BE22B0E9CD875A3A8 /* Pods_RemoteHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404E48EDCF3E5AC223286D58 /* Pods_RemoteHome.framework */; };
 /* End PBXBuildFile section */
@@ -178,9 +185,11 @@
 		49C808A3215EF74300796714 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49C808B9215EF8E900796714 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		49C808C2215F352800796714 /* DeviceDataApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDataApi.swift; sourceTree = "<group>"; };
+		49DCCA3E21D5641B00A51C58 /* RoomCell+Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoomCell+Room.swift"; sourceTree = "<group>"; };
 		49E76A5B21BEDBCB00D3574B /* PopUpSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpSignUpView.swift; sourceTree = "<group>"; };
 		49E76A5D21C01CA100D3574B /* ValidationProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationProtocols.swift; sourceTree = "<group>"; };
 		49E76A5F21C0307600D3574B /* UIViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
+		49E96A8F21D56C8100C4243C /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		49EF5F0121BAF7A60021BAE3 /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
 		49EF5F0321BC40B50021BAE3 /* Error+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Utils.swift"; sourceTree = "<group>"; };
 		49EF5F0521BC48490021BAE3 /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
@@ -197,6 +206,11 @@
 		49FBC3AF21C6B1CE007A6542 /* PickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerManager.swift; sourceTree = "<group>"; };
 		49FBC3B121C95397007A6542 /* ConfigureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureView.swift; sourceTree = "<group>"; };
 		49FBC3B321CAA63D007A6542 /* DeviceAttributesReturn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAttributesReturn.swift; sourceTree = "<group>"; };
+		49FBC3B721D3EFAD007A6542 /* RoomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsViewController.swift; sourceTree = "<group>"; };
+		49FBC3B921D3F228007A6542 /* RoomsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsView.swift; sourceTree = "<group>"; };
+		49FBC3BB21D3F658007A6542 /* RoomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCell.swift; sourceTree = "<group>"; };
+		49FBC3BD21D3FA58007A6542 /* RoomDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDataSource.swift; sourceTree = "<group>"; };
+		49FBC3BF21D3FA8B007A6542 /* RoomData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomData.swift; sourceTree = "<group>"; };
 		4E41540CA421A33659A4C077 /* Pods-RemoteHomeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RemoteHomeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RemoteHomeTests/Pods-RemoteHomeTests.release.xcconfig"; sourceTree = "<group>"; };
 		57A26C8C8890D840D0593E10 /* Pods_RemoteHomeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RemoteHomeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B58CF30467024604CA00B23 /* Pods-RemoteHome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RemoteHome.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RemoteHome/Pods-RemoteHome.debug.xcconfig"; sourceTree = "<group>"; };
@@ -260,6 +274,7 @@
 				49C80893215EF74300796714 /* Assets.xcassets */,
 				495CE9912179032400851172 /* Roboto-Bold.ttf */,
 				495CE9922179032400851172 /* Roboto-Regular.ttf */,
+				49E96A8F21D56C8100C4243C /* Roboto-Light.ttf */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -274,6 +289,8 @@
 				49AB4C352184FEF000A7B38A /* AirflowCell.swift */,
 				4910E831218E1A2000E538B4 /* MenuViewCell.swift */,
 				49FBC3A921C58AA1007A6542 /* ConfigureDeviceCell.swift */,
+				49FBC3BB21D3F658007A6542 /* RoomCell.swift */,
+				49DCCA3E21D5641B00A51C58 /* RoomCell+Room.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -311,6 +328,7 @@
 				49FBC3AB21C58B45007A6542 /* ConfigureDeviceView.swift */,
 				49FBC3AD21C58E49007A6542 /* ConfigureDeviceView+IoTDevice.swift */,
 				49FBC3B121C95397007A6542 /* ConfigureView.swift */,
+				49FBC3B921D3F228007A6542 /* RoomsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -328,6 +346,7 @@
 				4941658321A8E0EC0034328C /* VerifyViewController.swift */,
 				49EF5F0521BC48490021BAE3 /* ErrorViewController.swift */,
 				497274D221C468AF00F17771 /* ForgotPasswordViewController.swift */,
+				49FBC3B721D3EFAD007A6542 /* RoomsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -351,6 +370,8 @@
 				4941657421A8847B0034328C /* UserSignUpInfo.swift */,
 				4941657A21A890790034328C /* LoginInfo.swift */,
 				49FBC3B321CAA63D007A6542 /* DeviceAttributesReturn.swift */,
+				49FBC3BD21D3FA58007A6542 /* RoomDataSource.swift */,
+				49FBC3BF21D3FA8B007A6542 /* RoomData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -526,6 +547,7 @@
 				4941657D21A892F70034328C /* CognitoConfig.plist in Resources */,
 				49C80894215EF74300796714 /* Assets.xcassets in Resources */,
 				495CE9942179033200851172 /* Roboto-Regular.ttf in Resources */,
+				49E96A9021D56D8D00C4243C /* Roboto-Light.ttf in Resources */,
 				495CE9932179033200851172 /* Roboto-Bold.ttf in Resources */,
 				4983436421B8371000B95A47 /* ApiConfig.plist in Resources */,
 			);
@@ -553,6 +575,7 @@
 				"${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/IGListKit/IGListKit.framework",
+				"${BUILT_PRODUCTS_DIR}/MagazineLayout/MagazineLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SteviaLayout/Stevia.framework",
 			);
@@ -563,6 +586,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IGListKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagazineLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stevia.framework",
 			);
@@ -620,8 +644,10 @@
 				49C8088F215EF74200796714 /* DashboardViewController.swift in Sources */,
 				49EF5F1321BC5CBD0021BAE3 /* SlideOutAnimationController.swift in Sources */,
 				495CE98F2178EE4900851172 /* HeaderView+IoTDevice.swift in Sources */,
+				49FBC3BC21D3F658007A6542 /* RoomCell.swift in Sources */,
 				49E76A5C21BEDBCB00D3574B /* PopUpSignUpView.swift in Sources */,
 				49EF5F0A21BC4B050021BAE3 /* ErrorView+String.swift in Sources */,
+				49FBC3BA21D3F228007A6542 /* RoomsView.swift in Sources */,
 				497274D721C46A3900F17771 /* ForgotPasswordView.swift in Sources */,
 				495CE98D2178ED5500851172 /* HeaderView.swift in Sources */,
 				499BC04521712D0700C5A98B /* TemperatureCell.swift in Sources */,
@@ -630,6 +656,7 @@
 				49B139052183E8A600330E3D /* FanCell.swift in Sources */,
 				49FBC3AA21C58AA1007A6542 /* ConfigureDeviceCell.swift in Sources */,
 				49EF5F0821BC48CA0021BAE3 /* ErrorView.swift in Sources */,
+				49FBC3BE21D3FA58007A6542 /* RoomDataSource.swift in Sources */,
 				49C808C3215F352800796714 /* DeviceDataApi.swift in Sources */,
 				49B4020D2177AA930093607C /* IoTDevice.swift in Sources */,
 				4910E832218E1A2000E538B4 /* MenuViewCell.swift in Sources */,
@@ -671,6 +698,7 @@
 				495CE98B2178ECF100851172 /* HeaderCell.swift in Sources */,
 				49EF5F0C21BC59280021BAE3 /* PopUpErrorView.swift in Sources */,
 				4941657921A890030034328C /* LoginViewController.swift in Sources */,
+				49DCCA3F21D5641B00A51C58 /* RoomCell+Room.swift in Sources */,
 				49EF5F0F21BC5C2A0021BAE3 /* DimmingPresentationController.swift in Sources */,
 				497274D321C468AF00F17771 /* ForgotPasswordViewController.swift in Sources */,
 				49B13901218392C600330E3D /* ControlCell+IoTDevice.swift in Sources */,
@@ -679,8 +707,10 @@
 				4983436621B8374A00B95A47 /* ApiConfig.swift in Sources */,
 				4941657721A88E020034328C /* LoginView.swift in Sources */,
 				4910E834218E1C0F00E538B4 /* MenuItem.swift in Sources */,
+				49FBC3C021D3FA8B007A6542 /* RoomData.swift in Sources */,
 				4941657321A872DC0034328C /* SignUpView.swift in Sources */,
 				499BC04721712DD400C5A98B /* RoomTemperatureView.swift in Sources */,
+				49FBC3B821D3EFAD007A6542 /* RoomsViewController.swift in Sources */,
 				4910E838218E1E3000E538B4 /* MenuItemView+MenuItem.swift in Sources */,
 				49B139072183E8F200330E3D /* FanView.swift in Sources */,
 				4983436221AC612800B95A47 /* DeviceService.swift in Sources */,

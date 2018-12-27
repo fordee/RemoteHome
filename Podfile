@@ -11,7 +11,8 @@ target 'RemoteHome' do
   pod 'SteviaLayout', '~> 4.4.0'
   pod 'AWSCore', '~> 2.7.0'
   pod 'AWSCognitoIdentityProvider', '~> 2.7.0'
-	pod 'PromiseKit', '~> 6.0'
+  pod 'PromiseKit', '~> 6.0'
+  pod 'MagazineLayout'
 
   target 'RemoteHomeTests' do
     inherit! :search_paths

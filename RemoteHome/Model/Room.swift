@@ -10,19 +10,10 @@ import IGListKit
 
 class Room {
 	var roomName: String
-
+	var devices: [IoTDevice] = []
+	
 	init(room name: String) {
 		roomName = name
 	}
-}
 
-extension Room: ListDiffable {
-	public func diffIdentifier() -> NSObjectProtocol {
-		return roomName as NSObjectProtocol
-	}
-
-	public func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
-		guard let object = object as? Room else { return false }
-		return self.roomName == object.roomName
-	}
 }

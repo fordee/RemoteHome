@@ -197,13 +197,13 @@ final public class DeviceDataApi {
 
 			firstly {
 				service.temperature()
-				}.done { deviceDataResponse in
-					self.devices = self.getDeviceList(deviceDataResponse: deviceDataResponse)
-					self.activeDevices = self.devices.filter {$0.isActive}
-					seal.fulfill(self.devices)
-				}.catch { error in
-					print("Error: \(error.localizedDescription)")
-					seal.reject(error)
+			}.done { deviceDataResponse in
+				self.devices = self.getDeviceList(deviceDataResponse: deviceDataResponse)
+				self.activeDevices = self.devices.filter {$0.isActive}
+				seal.fulfill(self.devices)
+			}.catch { error in
+				print("Error: \(error.localizedDescription)")
+				seal.reject(error)
 			}
 		}
 	}

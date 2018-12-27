@@ -27,6 +27,8 @@ extension UIFont {
 	static var detailFont: UIFont { return UIFont(name: "Roboto-Regular", size: 18)! }
 	static var buttonFont: UIFont { return UIFont(name: "Roboto-Bold", size: 12)! }
 
+	static var cellTempFont: UIFont { return UIFont(name: "Roboto-Light", size: 44)! }
+
 	//	static var mainFont: UIFont { return UIFont(name: "AppleGothic", size: 18)! }
 }
 
