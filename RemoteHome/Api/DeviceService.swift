@@ -25,4 +25,13 @@ public class DeviceService: RestClient {
 	public func device(parameters: Parameters) -> Promise<DeviceAttributesReturn> {
 		return request(.device, parameters: parameters)
 	}
+
+	public func room() -> Promise<RoomDataResponse> {
+		return request(.room)
+	}
+
+	public func addRoom(parameters: Parameters) -> Promise<RoomData> {
+		return request(.addRoom, parameters: parameters)
+	}
+
 }

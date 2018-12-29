@@ -14,6 +14,8 @@ class RoomsView: UIView {
 
 	var listView: UICollectionView!
 
+	weak var delegate: RoomsViewControllerDelegate?
+
 	private lazy var dataSource = RoomDataSource()
 
 	convenience init() {
@@ -22,20 +24,12 @@ class RoomsView: UIView {
 		let collectionViewlayout = MagazineLayout()
 		listView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewlayout)
 		listView.register(RoomCell.self, forCellWithReuseIdentifier: RoomCell.reuseId)
-		listView.delegate = self
+		listView.delegate = self//superview?.parentViewController as? UICollectionViewDelegateMagazineLayout // TODO: A bit dodgy...
 		listView.dataSource = dataSource
 
-		let section0 = SectionInfo(
-			rooms: [Room(room: "Hallway"),
-									Room(room: "Computer Room"),
-									Room(room: "Lounge"),
-									Room(room: "Kitchen"),
-									Room(room: "Dining Room"),
-									Room(room: "Master Bedroom"),
-									Room(room: "Bedroom 1"),
-									Room(room: "Lounge 2"),
-									Room(room: "Bedroom 2"),
-									Room(room: "Kitchen 2")])
+		let rooms = DeviceDataApi.shared.rooms
+
+		let section0 = SectionInfo(rooms: rooms)
 		dataSource.insert(section0, atSectionIndex: 0)
 
 		render()
@@ -55,8 +49,13 @@ class RoomsView: UIView {
 }
 
 // MARK: UICollectionViewDelegateMagazineLayout
-
+//
 extension RoomsView: UICollectionViewDelegateMagazineLayout {
+
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		print("Selected cell: \(indexPath.item)")
+		delegate?.handleCellPressed(indexPath: indexPath)
+	}
 
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeModeForItemAt indexPath: IndexPath) -> MagazineLayoutItemSizeMode {
 		return MagazineLayoutItemSizeMode.init(widthMode: .halfWidth, heightMode: .dynamic)

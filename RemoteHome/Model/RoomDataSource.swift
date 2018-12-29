@@ -19,9 +19,9 @@ final class RoomDataSource: NSObject {
 		sectionInfos.insert(sectionInfo, at: sectionIndex)
 	}
 
-//	func insert(_ itemInfo: ItemInfo, atItemIndex itemIndex: Int, inSectionAtIndex sectionIndex: Int) {
-//		sectionInfos[sectionIndex].itemInfos.insert(itemInfo, at: itemIndex)
-//	}
+	func insert(_ room: Room, atIndex index: Int, inSectionAtIndex sectionIndex: Int) {
+		sectionInfos[sectionIndex].rooms.insert(room, at: index)
+	}
 
 	func removeSection(atSectionIndex sectionIndex: Int) {
 		sectionInfos.remove(at: sectionIndex)
@@ -76,4 +76,16 @@ extension RoomDataSource: DataSourceCountsProvider {
 		return sectionInfos[sectionIndex].rooms.count
 	}
 
+}
+
+protocol DataSourceCountsProvider {
+	var numberOfSections: Int { get }
+	func numberOfItemsInSection(withIndex sectionIndex: Int) -> Int
+}
+
+// MARK: - SectionInfo
+
+struct SectionInfo {
+	//var itemInfos: [ItemInfo]
+	var rooms: [Room]
 }

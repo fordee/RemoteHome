@@ -71,6 +71,9 @@
 		49E76A5E21C01CA100D3574B /* ValidationProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E76A5D21C01CA100D3574B /* ValidationProtocols.swift */; };
 		49E76A6021C0307600D3574B /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E76A5F21C0307600D3574B /* UIViewController+Utils.swift */; };
 		49E96A9021D56D8D00C4243C /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49E96A8F21D56C8100C4243C /* Roboto-Light.ttf */; };
+		49E96A9221D6DB6400C4243C /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E96A9121D6DB6400C4243C /* RoomViewController.swift */; };
+		49E96A9421D6DC2D00C4243C /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E96A9321D6DC2D00C4243C /* RoomView.swift */; };
+		49E96A9621D6DF4F00C4243C /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E96A9521D6DF4F00C4243C /* UIView+Utils.swift */; };
 		49EF5F0221BAF7A60021BAE3 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F0121BAF7A60021BAE3 /* String+Utils.swift */; };
 		49EF5F0421BC40B50021BAE3 /* Error+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F0321BC40B50021BAE3 /* Error+Utils.swift */; };
 		49EF5F0621BC48490021BAE3 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F0521BC48490021BAE3 /* ErrorViewController.swift */; };
@@ -190,6 +193,9 @@
 		49E76A5D21C01CA100D3574B /* ValidationProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationProtocols.swift; sourceTree = "<group>"; };
 		49E76A5F21C0307600D3574B /* UIViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
 		49E96A8F21D56C8100C4243C /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		49E96A9121D6DB6400C4243C /* RoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
+		49E96A9321D6DC2D00C4243C /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
+		49E96A9521D6DF4F00C4243C /* UIView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
 		49EF5F0121BAF7A60021BAE3 /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
 		49EF5F0321BC40B50021BAE3 /* Error+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Utils.swift"; sourceTree = "<group>"; };
 		49EF5F0521BC48490021BAE3 /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
@@ -329,6 +335,7 @@
 				49FBC3AD21C58E49007A6542 /* ConfigureDeviceView+IoTDevice.swift */,
 				49FBC3B121C95397007A6542 /* ConfigureView.swift */,
 				49FBC3B921D3F228007A6542 /* RoomsView.swift */,
+				49E96A9321D6DC2D00C4243C /* RoomView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -347,6 +354,7 @@
 				49EF5F0521BC48490021BAE3 /* ErrorViewController.swift */,
 				497274D221C468AF00F17771 /* ForgotPasswordViewController.swift */,
 				49FBC3B721D3EFAD007A6542 /* RoomsViewController.swift */,
+				49E96A9121D6DB6400C4243C /* RoomViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -371,7 +379,6 @@
 				4941657A21A890790034328C /* LoginInfo.swift */,
 				49FBC3B321CAA63D007A6542 /* DeviceAttributesReturn.swift */,
 				49FBC3BD21D3FA58007A6542 /* RoomDataSource.swift */,
-				49FBC3BF21D3FA8B007A6542 /* RoomData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -380,6 +387,7 @@
 			isa = PBXGroup;
 			children = (
 				49C808C2215F352800796714 /* DeviceDataApi.swift */,
+				49FBC3BF21D3FA8B007A6542 /* RoomData.swift */,
 				4983435F21AC515C00B95A47 /* RestClient.swift */,
 				4983436121AC612800B95A47 /* DeviceService.swift */,
 			);
@@ -395,6 +403,7 @@
 				49E76A5D21C01CA100D3574B /* ValidationProtocols.swift */,
 				49E76A5F21C0307600D3574B /* UIViewController+Utils.swift */,
 				49FBC3AF21C6B1CE007A6542 /* PickerManager.swift */,
+				49E96A9521D6DF4F00C4243C /* UIView+Utils.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -640,6 +649,7 @@
 			files = (
 				4910E8402193521F00E538B4 /* MenuView.swift in Sources */,
 				4910E8482194A2FB00E538B4 /* SettingsMenuViewController.swift in Sources */,
+				49E96A9621D6DF4F00C4243C /* UIView+Utils.swift in Sources */,
 				49E76A6021C0307600D3574B /* UIViewController+Utils.swift in Sources */,
 				49C8088F215EF74200796714 /* DashboardViewController.swift in Sources */,
 				49EF5F1321BC5CBD0021BAE3 /* SlideOutAnimationController.swift in Sources */,
@@ -653,6 +663,7 @@
 				499BC04521712D0700C5A98B /* TemperatureCell.swift in Sources */,
 				49C8088D215EF74200796714 /* AppDelegate.swift in Sources */,
 				499BC0492171305600C5A98B /* SetTemperatureView.swift in Sources */,
+				49E96A9221D6DB6400C4243C /* RoomViewController.swift in Sources */,
 				49B139052183E8A600330E3D /* FanCell.swift in Sources */,
 				49FBC3AA21C58AA1007A6542 /* ConfigureDeviceCell.swift in Sources */,
 				49EF5F0821BC48CA0021BAE3 /* ErrorView.swift in Sources */,
@@ -687,6 +698,7 @@
 				499BC04B2171388400C5A98B /* RoomTemperatureView+IoTDevice.swift in Sources */,
 				49026A6A216FC0880088501A /* ControlsSectionController.swift in Sources */,
 				4910E84E2194E23A00E538B4 /* ConfigDeviceSectionController.swift in Sources */,
+				49E96A9421D6DC2D00C4243C /* RoomView.swift in Sources */,
 				4941658621A8E12B0034328C /* VerifyView.swift in Sources */,
 				49FBC3B221C95397007A6542 /* ConfigureView.swift in Sources */,
 				49EF5F1121BC5C630021BAE3 /* SlideInAnimationController.swift in Sources */,

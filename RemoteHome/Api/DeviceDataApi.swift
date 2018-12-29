@@ -75,11 +75,7 @@ public struct Device: Decodable {
 }
 
 public struct DeviceDataResponse: Decodable {
-	//let ServiceID: String
-	var devices: [Device]
-	init() {
-		devices = []
-	}
+	var devices: [Device] = []
 }
 
 public struct HvacCommand {
@@ -133,6 +129,8 @@ final public class DeviceDataApi {
 	public var devices: [IoTDevice] = []
 	public var activeDevices: [IoTDevice] = []
 
+	public var rooms: [Room] = []
+
 	// MARK: Private variables
 	private var service: DeviceService?
 
@@ -157,6 +155,37 @@ final public class DeviceDataApi {
 			}.catch { error in
 				print("Error: \(error.localizedDescription)")
 				seal.reject(error)
+			}
+		}
+	}
+
+	public func addRoom(_ room: Room) -> Promise<RoomData> {
+		var rooms = ""
+		if !room.deviceIds.isEmpty {
+			for deviceId in room.deviceIds {
+				rooms += deviceId + ","
+			}
+			rooms = String(rooms.dropLast())
+		}
+
+		let parameters: Parameters = [
+			"room_name" : room.roomName,
+			"device_ids" : rooms
+		]
+
+		print(parameters)
+
+		guard let service = service else { fatalError("DeviceService is unavailable") }
+
+		return Promise { seal in
+			firstly {
+				service.addRoom(parameters: parameters)
+				}.done { roomDataResponse in
+					print(roomDataResponse)
+					seal.fulfill(roomDataResponse)
+				}.catch { error in
+					print("Error: \(error.localizedDescription)")
+					seal.reject(error)
 			}
 		}
 	}
@@ -201,6 +230,24 @@ final public class DeviceDataApi {
 				self.devices = self.getDeviceList(deviceDataResponse: deviceDataResponse)
 				self.activeDevices = self.devices.filter {$0.isActive}
 				seal.fulfill(self.devices)
+			}.catch { error in
+				print("Error: \(error.localizedDescription)")
+				seal.reject(error)
+			}
+		}
+	}
+
+	public func refreshRoomData() -> Promise<[Room]> {
+		return Promise { seal in
+			guard let service = service else {
+				throw RHError.token("Token not available yet. Try again later.")
+			}
+
+			firstly {
+				service.room()
+			}.done { roomDataResponse in
+				self.rooms = self.getRoomList(roomDataResponse: roomDataResponse)
+				seal.fulfill(self.rooms)
 			}.catch { error in
 				print("Error: \(error.localizedDescription)")
 				seal.reject(error)
@@ -254,6 +301,15 @@ final public class DeviceDataApi {
 			iotDevces.append(iotDevice)
 		}
 		return iotDevces
+	}
+
+	private func getRoomList(roomDataResponse: RoomDataResponse) -> [Room] {
+		var rooms: [Room] = []
+		for room in roomDataResponse.rooms {
+			let room = Room(with: room)
+			rooms.append(room)
+		}
+		return rooms
 	}
 
 }

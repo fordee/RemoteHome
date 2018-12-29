@@ -37,6 +37,7 @@ class RoomCell: MagazineLayoutCollectionViewCell {
 
 		// Configure visual elements
 		backgroundColor = UIColor.controlColor
+		layer.cornerRadius = 8
 	}
 
 	private func labelStyle(lbl: UILabel) {
@@ -49,7 +50,7 @@ class RoomCell: MagazineLayoutCollectionViewCell {
 	private func temperatureLabelStyle(lbl: UILabel) {
 		labelStyle(lbl: lbl)
 		lbl.font = .cellTempFont
-		lbl.text = "23.1°"
+		lbl.text = "N/A"
 	}
 }
 

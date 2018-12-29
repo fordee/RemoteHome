@@ -84,6 +84,8 @@ public enum Resource {
 	case temperature
 	case aircon
 	case device
+	case room
+	case addRoom
 
 	public var resource: (method: HTTPMethod, route: String) {
 		switch self {
@@ -93,6 +95,10 @@ public enum Resource {
 			return (.post, "/aircon")
 		case .device:
 			return (.post, "/device")
+		case .room:
+			return (.get, "/room")
+		case .addRoom:
+			return (.post, "/room")
 		}
 	}
 }

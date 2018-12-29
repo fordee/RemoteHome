@@ -6,14 +6,27 @@
 //  Copyright © 2018 4DWare. All rights reserved.
 //
 
-import IGListKit
+import Foundation
 
-class Room {
+public class Room {
 	var roomName: String
-	var devices: [IoTDevice] = []
+	var deviceIds: [String] = []
 	
 	init(room name: String) {
 		roomName = name
+	}
+
+	convenience init(room name: String, deviceIds: [String]) {
+		self.init(room: name)
+		self.deviceIds = deviceIds
+	}
+
+	convenience init(with roomData: RoomData) {
+		self.init(room: roomData.room_name)
+		guard let device_ids = roomData.device_ids else { return } // No devices
+		for device_id in device_ids {
+			deviceIds.append(device_id)
+		}
 	}
 
 }

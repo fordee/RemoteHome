@@ -12,6 +12,14 @@ extension RoomCell {
 
 	func render(with room: Room) {
 		roomNamelabel.text = room.roomName
+
+		for deviceId in room.deviceIds {
+			if let index = DeviceDataApi.shared.devices.firstIndex(where: {deviceId == $0.deviceId}),
+				let temperature = DeviceDataApi.shared.devices[index].temperatureDouble {
+				temperatureLabel.text = String(format: "%.01f", temperature) + "°"
+				return
+			}
+		}
 	}
 
 }
