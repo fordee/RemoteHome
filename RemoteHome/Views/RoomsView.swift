@@ -54,7 +54,8 @@ extension RoomsView: UICollectionViewDelegateMagazineLayout {
 
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		print("Selected cell: \(indexPath.item)")
-		delegate?.handleCellPressed(indexPath: indexPath)
+		let selectedView = collectionView.cellForItem(at: indexPath)?.contentView
+		delegate?.handleCellPressed(indexPath: indexPath, selectedView: selectedView!)
 	}
 
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeModeForItemAt indexPath: IndexPath) -> MagazineLayoutItemSizeMode {

@@ -14,12 +14,20 @@ class RoomsViewController: UIViewController {
 
 	let v = RoomsView()
 
+	let transition = PopAnimator()
+	var selectedView: UIView?
+
 	override func loadView() {
 		view = v
 	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+
+		transition.dismissCompletion = {
+			self.selectedView!.isHidden = false
+		}
+
 		navigationItem.title = "Rooms"
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed(_:)))
 		v.delegate = self
@@ -49,15 +57,40 @@ class RoomsViewController: UIViewController {
 	}
 }
 
+extension RoomsViewController: UIViewControllerTransitioningDelegate {
+	func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+		transition.originFrame = selectedView!.superview!.convert(selectedView!.frame, to: nil)
+
+		transition.presenting = true
+		selectedView!.isHidden = true
+
+		return transition
+	}
+
+	func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+		transition.presenting = false
+		return transition
+	}
+}
+
+
+
 protocol RoomsViewControllerDelegate: AnyObject	{
-	func handleCellPressed(indexPath: IndexPath)
+	func handleCellPressed(indexPath: IndexPath, selectedView: UIView)
 }
 
 extension RoomsViewController: RoomsViewControllerDelegate {
-	func handleCellPressed(indexPath: IndexPath) {
+	func handleCellPressed(indexPath: IndexPath, selectedView: UIView) {
 		print("Delegate handleCellPressed called.")
-		present(RoomViewController(), animated: true)
+		self.selectedView = selectedView
+
+		let vc = RoomViewController()
+		//vc.modalPresentationStyle = .formSheet
+		if let cell = v.listView.cellForItem(at: indexPath) as? RoomCell {
+			vc.v.roomNamelabel.text = cell.roomNamelabel.text
+			vc.v.temperatureLabel.text = cell.temperatureLabel.text
+		}
+		vc.transitioningDelegate = self
+		present(vc, animated: true)
 	}
-
-
 }

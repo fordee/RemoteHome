@@ -40,33 +40,21 @@ class MenuViewController: UIViewController {
 		adapter.dataSource = self
 		adapter.collectionViewDelegate = self
 
-		refreshIoTData()
-		refreshRoomData()
+		refreshData()
 	}
 
-	private func refreshIoTData() {
+	private func refreshData() {
 		firstly {
 			DeviceDataApi.shared.fetchAccessId()
 		}.then { accessString in
 			DeviceDataApi.shared.refreshDeviceData().filterValues { $0.isActive }
+		}.then { accessString in
+				DeviceDataApi.shared.refreshRoomData()
 		}.done { devices in
 			// Do nothing. DeviceDataApi devices is populated.
 		}.catch { error in
 			let reason = error.getReason()
 			self.showErrorDialog(reason)
-		}
-	}
-
-	private func refreshRoomData() {
-		firstly {
-			DeviceDataApi.shared.fetchAccessId()
-			}.then { accessString in
-				DeviceDataApi.shared.refreshRoomData()
-			}.done { rooms in
-				// Do nothing. DeviceDataApi devices is populated.
-			}.catch { error in
-				let reason = error.getReason()
-				self.showErrorDialog(reason)
 		}
 	}
 }

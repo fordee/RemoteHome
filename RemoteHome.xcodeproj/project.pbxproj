@@ -74,6 +74,7 @@
 		49E96A9221D6DB6400C4243C /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E96A9121D6DB6400C4243C /* RoomViewController.swift */; };
 		49E96A9421D6DC2D00C4243C /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E96A9321D6DC2D00C4243C /* RoomView.swift */; };
 		49E96A9621D6DF4F00C4243C /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E96A9521D6DF4F00C4243C /* UIView+Utils.swift */; };
+		49E96C2C21D950AD00C4243C /* PopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E96C2B21D950AD00C4243C /* PopAnimator.swift */; };
 		49EF5F0221BAF7A60021BAE3 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F0121BAF7A60021BAE3 /* String+Utils.swift */; };
 		49EF5F0421BC40B50021BAE3 /* Error+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F0321BC40B50021BAE3 /* Error+Utils.swift */; };
 		49EF5F0621BC48490021BAE3 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5F0521BC48490021BAE3 /* ErrorViewController.swift */; };
@@ -196,6 +197,7 @@
 		49E96A9121D6DB6400C4243C /* RoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
 		49E96A9321D6DC2D00C4243C /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
 		49E96A9521D6DF4F00C4243C /* UIView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
+		49E96C2B21D950AD00C4243C /* PopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopAnimator.swift; sourceTree = "<group>"; };
 		49EF5F0121BAF7A60021BAE3 /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
 		49EF5F0321BC40B50021BAE3 /* Error+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Utils.swift"; sourceTree = "<group>"; };
 		49EF5F0521BC48490021BAE3 /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
@@ -463,6 +465,7 @@
 				49EF5F0E21BC5C2A0021BAE3 /* DimmingPresentationController.swift */,
 				49EF5F1021BC5C630021BAE3 /* SlideInAnimationController.swift */,
 				49EF5F1221BC5CBD0021BAE3 /* SlideOutAnimationController.swift */,
+				49E96C2B21D950AD00C4243C /* PopAnimator.swift */,
 			);
 			path = "Presentation Controllers";
 			sourceTree = "<group>";
@@ -702,6 +705,7 @@
 				4941658621A8E12B0034328C /* VerifyView.swift in Sources */,
 				49FBC3B221C95397007A6542 /* ConfigureView.swift in Sources */,
 				49EF5F1121BC5C630021BAE3 /* SlideInAnimationController.swift in Sources */,
+				49E96C2C21D950AD00C4243C /* PopAnimator.swift in Sources */,
 				497274D521C469D900F17771 /* PopUpForgotPasswordView.swift in Sources */,
 				49B139032183A0BE00330E3D /* SetTemperatureView+IoTDevice.swift in Sources */,
 				49FBC3AC21C58B45007A6542 /* ConfigureDeviceView.swift in Sources */,
